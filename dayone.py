@@ -1,6 +1,6 @@
 # September 8, 2018
 # Sonali's Computer Conversation
-# No outside sources.
+# No outside sources (experimented with if and elif from a previous program).
 print("Hello!")
 username = input("What would you like me to call you? ")
 print("Well, hello there " + username + "!")
