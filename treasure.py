@@ -21,11 +21,10 @@ def hunt():
 	test = input("Let's give you a practice riddle. \n What gets wet while drying? \n >> A...")
 	if test == 'towel':
 		print("You're on fire! The answer is a towel. Nice going. If you get a riddle wrong on the journey ahead, you will have a choice to make. You may play a guessing game against me, and if you win in five tries, you may move ahead without losing a life. However, if you choose to play the game, and cannot guess my number in five tries, you lose all three lives and are out of the hunt. Of course your other option is to simply lose a life, and move on. Hopefully", username, "you'll never have to make that choice. Okay, enough talking. Let's begin!")
+		r_one()
 	else:
 		print("Oh no, that's disappointing. Your answer,", test, "is not correct. I will allow you to start the hunt without consequence but you should know... if you get another riddle wrong on the journey ahead, you will have a choice to make. You may play a guessing game against me, and if you win in five tries, you may move ahead without losing a life. However, if you choose to play the game, and cannot guess my number in five tries, you lose all three lives and are out of the hunt. Of course your other option is to simply lose a life, and move on. Hopefully" ,username ,"you'll never have to make that choice. Okay, enough talking. Let's begin!")
-
-		
-	r_one()
+		r_one()
 
 def shame():
 	tryagain = input("\nOh, I'm sorry to hear that " + username + ". It takes a very unique soul to turn down the chance for an amazing treasure and journey. Since I'm feeling generous, I'll give you one more chance to change your mind. Do you want to: \n 1) Admit you were too hasty in saying no, and begin the treasure hunt \nor\n 2) Stick with your decision, and leave treasure island. \n>> ")
@@ -44,11 +43,65 @@ def wrong():
 
 #The code for the guessing game starts here.
 guess = 0
-guessCounter = 0
+guessCounter = 1
 number = random.randrange(0,100,1)
+def guessgame():
+	global guess
+	while True:
+		try:
+			guess = int(input("Guess the integer I'm thinking of, between 1 and 100. \n >> "))
+			if guess != number:
+				if (guess > 100 or guess < 0):
+					print("I won't count that as a guess because the number you guessed is not in the range I described. Please guess again.")
+					guessgame()
+
+				elif guess > number:
+					lower()
+
+				elif guess < number:
+					higher()
+
+			if guess == number:
+				win()
+		except ValueError:
+			print("I won't count that as a guess because that's not a number [ex; 1]. Try again.")
+			guessgame()
 
 
+def win():
+	global number
+	while guessCounter <=5:
+		print("Congratulations! You are a star guesser. You guessed my number," , number,", correctly in", guessCounter, "tries!" )
+		quit()
+		break
+	if guessCounter > 5:
+		print("Sorry, your attempt to save one of your lives was futile. You didn't guess my number in five tries. Unfortunately that means you lose all your lives and are out of the treasure hunt. Goodbye for now!")
+		quit()
+	#repeat = input("Would you like to play again? [Yes or No] \n >> ")
+	#if repeat == 'Yes':
+		#number = random.randrange(0,100,1)
+		#guessgame()
+	#else:
+		#quit()
+		
 
+def lower():
+	global guessCounter
+	guessCounter += 1
+	print("Good guess, but you're shooting too high. My number is less than", guess, "\n")
+	print("GUESS AGAIN!")
+	guessgame()
+
+
+def higher():
+	global guessCounter
+	guessCounter += 1
+	print("Good guess, but you're swinging a bit low. My number is higher than", guess, "\n")
+	print("GUESS AGAIN!")
+	guessgame()
+
+
+	
 
 
 
