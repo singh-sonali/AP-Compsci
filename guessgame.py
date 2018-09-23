@@ -32,6 +32,7 @@ def win():
 	global number
 	while guessCounter <=5:
 		print("Congratulations! You are a star guesser. You guessed my number," , number,", correctly in", guessCounter, "tries!" )
+		print("You now get to ")
 		quit()
 		break
 	if guessCounter > 5:
