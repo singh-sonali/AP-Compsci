@@ -17,7 +17,6 @@ def start():
 		start()
 
 def hunt():
-	
 	print("\nAlright", username, "let me tell you how this works. Each clue will be presented to you as a riddle. The answer to the riddle is always one word. If you answer the riddle correctly, you move on to the next clue with all lives intact.")
 	test = input("Let's give you a practice riddle. \n What gets wet while drying? \n >> A...")
 	if test == 'towel':
@@ -32,7 +31,8 @@ def shame():
 	if tryagain == '1':
 		start()
 	elif tryagain == '2':
-		print("Oh well. Not everyone loves adventure, I guess. Goodbye for now " + username + " !")
+		print("Oh well. Not everyone loves adventure, I guess. Goodbye for now " + username + "!")
+		quit()
 	else:
 		print("\nThat's not a number. Enter a 1 or a 2.")
 		shame()
@@ -43,12 +43,12 @@ def r_one():
 	global riddlenumber 
 	riddlenumber += 1
 
-	r_one = input("\nTime for your first riddle.\nWhich word in the dictionary is spelled incorrectly? \n>>The word...")
+	r_one = input("\nTime for your first riddle.\nWhich word in the dictionary is spelled incorrectly? \n>> The word...")
 	if r_one == 'incorrectly' or r_one == 'Incorrectly':
 		print("Correct. Nice going. You have", lives, "lives left. You get to move on to Riddle 2, and are one step closer to the treasure!")
 		r_two()
 	else:
-		print("Your answer", r_one, "is not correct. The correct answer is the word 'incorrectly'.")
+		print("Your answer", r_one, "is not correct. You have" ,lives, "left.")
 		lives -= 1
 		wrong()
 
@@ -57,12 +57,12 @@ def r_two():
 	global riddlenumber
 	riddlenumber +=1
 
-	r_two = input("\n Whoopee! Riddle two here you come! \n What gets bigger the more you take away?\n>> A...")
-	if r_two == 'hole' or r_two == "Hole":
-		print("Heck yeah! Another riddle down, four more to go. You have", lives, "left. Let's move on!")
+	r_two = input("\nWhoopee! Riddle two here you come! \nWhat gets bigger the more you take away?\n>> A...")
+	if r_two == 'hole' or r_two == 'Hole':
+		print("Heck yeah! Another riddle down, four more to go. You have", lives, " lives left. Let's move on!")
 		r_three()
 	else:
-		print("Your answer", r_two, "is not correct. The correct answer is a hole.")
+		print("Your answer", r_two, "is not correct. You have" ,lives, "left.")
 		lives -= 1
 		wrong()
 
@@ -70,52 +70,109 @@ def r_three():
 	global lives
 	global riddlenumber
 	riddlenumber +=1
+
+	r_three = input("\nNext riddle. \nI have keys but no locks. I have a space but no room. You can enter but you can't go outside. What am I?\n>> I am a...")
+	if r_three == 'keyboard' or r_three == 'Keyboard':
+		print("Correct. Nice going. You have", lives, "lives left. You get to move on to Riddle 4, and are one step closer to the treasure!")
+		r_four()
+	else:
+		print("Your answer", r_three, "is not correct. You have", lives, "left.")
+		lives -= 1
+		wrong()
+
 def r_four():
 	global lives
 	global riddlenumber
 	riddlenumber +=1
 
-	r_four = input("\nNext riddle. \nI have keys but no locks. I have a space but no room. You can enter but you can't go outside. What am I?\n>> I am a...")
-	if r_four == 'keyboard' or r_four == "Keyboard":
-		print("Correct. Nice going. You have", lives, "lives left. You get to move on to Riddle 5, and are one step closer to the treasure!")
+	r_four = input("\n Riddle up! \nIf you have me, you will want to share me. If you share me, you will no longer have me. What am I?\n>> I am a...")
+	if r_four == 'secret' or r_four == 'Secret':
+		print("Good job! You have", lives, "left. Ready to move on? That's a rhetorical question. Onward!")
 		r_five()
 	else:
-		print("Your answer", r_four, "is not correct. The correct answer is a keyboard.")
+		print("Aw shucks! Your answer" ,r_four, "is not right. You have", lives, "left.")
 		lives -= 1
 		wrong()
+
 def r_five():
 	global lives
 	global riddlenumber
 	riddlenumber +=1
+
+	r_five = input("\nRiddle number five!\nWhat travels around the world but always stays in the corner?\n>> A...")
+	if r_five == 'stamp' or r_five == "Stamp":
+		print("Oh my goodness! You are so close! Only one more riddle to go. Lives left:" , lives)
+		r_six()
+	else:
+		print("Oh no, you were so close!! Your answer", r_five, "is not correct. You have", lives, "left.")
+		lives -= 1
+		wrong()
+
 def r_six():
 	global lives
 	global riddlenumber
 	riddlenumber +=1
+
+	r_six = input("\nLAST RIDDLE!\nIt is greater than God; it is more evil than the Devil; the poor have it; the rich need it; and if you eat it, you will die. What is it?\n>>It is...")
+	if r_six == 'nothing' or r_six == 'Nothing':
+		print("AHHH!!! You did it! Unbelievable", username, "you've won. Time to get your treasure.")
+		grandprize()
+	else:
+		print("SHOOT! You were so so close! You have", lives, "lives left!")
+		if (lives >0):
+			lastchance()
+
+		else:
+			print("You don't have any lives left! You almost had it! Please try playing again", username, "at some point! I have full faith in you that one day you'll get the treasure! Goodbye...")
+			quit()
+
 def grandprize():
 	global lives
 	global riddlenumber
 	riddlenumber +=1
+	print("YOU'VE REACHED THE TREASURE!!!!" ,username, "this is unbelievable. Are you ready for your treasure?")
+	print("Here you go!!!!!!")
+	print("~~~DIAMONDS, RUBIES, SAPPHIRES, GLOWING GOLD~~~ all pop up in a chest in front of you. It all is yours. Enjoy, sensei, enjoy.")
+	quit()
+
+def lastchance():
+	lastchance = input("You still have lives left. You can still try to win! Do you want to \n 1) Play a guessing game against me for one last chance to get the treasure.\n2) Accept you've come this far, and leave with dignity to return another day. \n>> ")
+	if lastchance == '1':
+		print("You've got this.")
+		guessgame()
+	elif lastchance == '2':
+		print("Oh man", username,"! You put forth a valiant effort. Congratulations, and goodbye.")
+		quit()
+	else:
+		print("Sorry, I don't know what", lastchance, "means. Please enter a 1 or 2.")
+		lastchance()
+
 #edit
 def wrong():
-	choice = input("\nYou got that riddle wrong and you now have a choice. Do you want to... \n1)Move on to the next riddle with one less life \n2)Play a guessing game against me, in which you must guess the number I'm thinking of in five tries to keep your life. If you are unsuccessful in guessing, you lose all your lives and are out of the hunt. \n>> ")
-	if choice == '1':
-		if riddlenumber == 1:
-			r_two()
-		elif riddlenumber == 2:
-			r_three()
-		elif riddlenumber == 3:
-			r_four()
-		elif riddlenumber == 4:
-			r_five()
-		elif riddlenumber == 5:
-			r_six()
+	while lives>0:
+		choice = input("\nYou got that riddle wrong and you now have a choice. Do you want to... \n1)Move on to the next riddle with one less life \n2)Play a guessing game against me, in which you must guess the number I'm thinking of in five tries to keep your life. If you are unsuccessful in guessing, you lose all your lives and are out of the hunt. \n>> ")
+		if choice == '1':
+			if riddlenumber == 1:
+				r_two()
+			elif riddlenumber == 2:
+				r_three()
+			elif riddlenumber == 3:
+				r_four()
+			elif riddlenumber == 4:
+				r_five()
+			elif riddlenumber == 5:
+				r_six()
+			else:
+				print("You were so close! Sorry, but you don't get the lovely treasure just yet. I have to say goodbye for now, but please play again!")
+		elif choice == '2':
+			guessgame()
 		else:
-			print("You were so close! Sorry, but you don't get the lovely treasure just yet. I have to say goodbye for now, but please play again!")
-	elif choice == '2':
-		guessgame()
+			print("Sorry," , choice, "is not a choice. Please enter a 1 or a 2.\n>>")
+			wrong()
+		break 
 	else:
-		print("Sorry," , choice, "is not a choice. Please enter a 1 or a 2.\n>>")
-		wrong()
+		print("Oh no! You're out of lives. Sorry, but you're out of the hunt!")
+		quit()
 
 
 #The code for the guessing game starts here.
@@ -127,7 +184,7 @@ def guessgame():
 	global guess
 	while True:
 		try:
-			guess = int(input("The stakes are high! Guess the integer I'm thinking of, between 1 and 100. \n >> "))
+			guess = int(input("The stakes are high! Guess the integer I'm thinking of, between 1 and 100. \n>> "))
 			if guess != number:
 				if (guess > 100 or guess < 0):
 					print("I won't count that as a guess because the number you guessed is not in the range I described. Please guess again.")
@@ -162,6 +219,8 @@ def win():
 			r_five()
 		elif riddlenumber == 5:
 			r_six()
+		elif riddlenumer == 6:
+			grandprize()
 	if guessCounter > 5:
 		print("Sorry, your attempt to save one of your lives was futile. You didn't guess my number in five tries. Unfortunately that means you lose all your lives and are out of the treasure hunt. Goodbye for now!")
 		quit()
