@@ -1,6 +1,7 @@
 #Sonali Singh
 #Adventure Game
 #9-23-18
+#OMH: I have neither given nor received any unauthorized aid.
 #Sources:
 #https://www.thethings.com/15-stupidly-simple-riddles-most-people-cannot-solve-2/
 #https://pulptastic.com/hurty-brains-ahead/
