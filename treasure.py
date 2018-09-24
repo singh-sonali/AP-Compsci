@@ -222,7 +222,11 @@ def guessgame():
 
 def win():
 	global number
+	global guessnumber
 	global riddlenumber
+	global lives
+	lives+=1
+	guessnumber = 1
 	print("\nCongratulations! You are a star guesser. You guessed my number," , number,", correctly in", guessCounter, "tries! You get to move on!!")
 	if riddlenumber == 1:
 		r_two()
