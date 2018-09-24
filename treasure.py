@@ -135,6 +135,7 @@ def r_six():
 		lives-=1
 		print("\nSHOOT! You were so so close! You have", lives, "lives left!")
 		if (lives >0):
+			#Gives the user one last chance to win 
 			lastchance()
 
 		else:
@@ -225,6 +226,7 @@ def win():
 	global guessCounter
 	global riddlenumber
 	global lives
+	#Gives the user the life they were trying to save back.
 	lives+=1
 	print("\nCongratulations! You are a star guesser. You guessed my number," , number,", correctly in", guessCounter, "tries! You get to move on!!")
 	guessCounter = 1
@@ -261,6 +263,7 @@ def higher():
 def playagain():
 	again = input("\nWould you like to play again? [Y or N]\n>> ")
 	if again.upper() == 'Y':
+		#resets all the variables so the user starts with a clean slate
 		global username
 		username = input("\nHi adventurous soul, what's your name?\n>> ")
 		global number 
