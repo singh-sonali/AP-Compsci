@@ -222,12 +222,13 @@ def guessgame():
 
 def win():
 	global number
-	global guessnumber
+	global guessCounter
 	global riddlenumber
 	global lives
 	lives+=1
-	guessnumber = 1
+	guessCounter = 1
 	print("\nCongratulations! You are a star guesser. You guessed my number," , number,", correctly in", guessCounter, "tries! You get to move on!!")
+	number = random.randrange(0,100,1)
 	if riddlenumber == 1:
 		r_two()
 	elif riddlenumber == 2:
@@ -264,6 +265,10 @@ def playagain():
 		username = input("\nHi adventurous soul, what's your name?\n>> ")
 		global number 
 		number = random.randrange(0,100,1)
+		global lives
+		lives = 3
+		global guessCounter
+		guessCounter = 1
 		start()
 	elif again.upper() == 'N':
 		quit()
