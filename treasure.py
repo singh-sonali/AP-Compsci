@@ -226,8 +226,8 @@ def win():
 	global riddlenumber
 	global lives
 	lives+=1
-	guessCounter = 1
 	print("\nCongratulations! You are a star guesser. You guessed my number," , number,", correctly in", guessCounter, "tries! You get to move on!!")
+	guessCounter = 1
 	number = random.randrange(0,100,1)
 	if riddlenumber == 1:
 		r_two()
