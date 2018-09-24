@@ -144,7 +144,7 @@ def grandprize():
 	global lives
 	global riddlenumber
 	riddlenumber +=1
-	print("YOU'VE REACHED THE TREASURE!!!!" ,username, "this is unbelievable. Are you ready for your booty?")
+	print("\nYOU'VE REACHED THE TREASURE!!!!" ,username, "this is unbelievable. Are you ready for your booty?")
 	print("Here you go!!!!!!")
 	print("~~~DIAMONDS, RUBIES, SAPPHIRES, GLOWING GOLD~~~ all pop up in a chest in front of you. It all is yours. Enjoy, sensei", username, ",enjoy.")
 	quit()
