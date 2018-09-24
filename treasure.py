@@ -233,7 +233,7 @@ def win():
 		r_five()
 	elif riddlenumber == 5:
 		r_six()
-	elif riddlenumer == 6:
+	elif riddlenumber == 6:
 		grandprize()
 		
 		
