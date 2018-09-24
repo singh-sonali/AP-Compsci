@@ -254,13 +254,13 @@ def higher():
 
 def playagain():
 	again = input("Would you like to play again? [Y or N]\n>> ")
-	if again == 'Y' or again == 'y':
+	if again.upper() == 'Y':
 		global username
 		username = input("\nHi adventurous soul, what's your name?\n>> ")
 		global number 
 		number = random.randrange(0,100,1)
 		start()
-	elif again == 'N' or again == 'n':
+	elif again.upper() == 'N':
 		quit()
 	else:
 		print("That's not a choice!! Please enter a 1 or 2.")
