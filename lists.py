@@ -1,3 +1,4 @@
+import random as r
 #empty list
 a = []
 #add something to list
@@ -47,6 +48,16 @@ e[3], e[6] = e[6], e[3]
 print(e)
 
 f = []
-for x in range(0, 700, 7):
+for x in range(7, 707, 7):
 	f.append(x)
-print(x)
+print(f)
+print(len(f))
+
+g = []
+for x in range(10):
+	g.append(r.randrange(100))
+print(g)
+#g.sort()
+#print(sorted(g))
+g = sorted(g)
+print(g)
