@@ -272,6 +272,8 @@ def playagain():
 		lives = 3
 		global guessCounter
 		guessCounter = 1
+		global riddlenumber
+		riddlenumber = 0
 		start()
 	elif again.upper() == 'N':
 		quit()
