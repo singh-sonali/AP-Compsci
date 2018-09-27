@@ -2,14 +2,13 @@ import sys
 import random
 
 number = random.randrange(0,100,1)
-print(number)
 guess = 0
 guessCounter = 1
 def guessgame():
 	global guess
 	while True:
 		try:
-			guess = int(input("Guess the integer I'm thinking of, between 1 and 100. \n >> "))
+			guess = int(input("Guess the integer I'm thinking of, between 1 and 100. \n>> "))
 			if guess != number:
 				if (guess > 100 or guess < 0):
 					print("I won't count that as a guess because the number you guessed is not in the range I described. Please guess again.")
