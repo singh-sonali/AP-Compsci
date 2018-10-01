@@ -16,15 +16,16 @@ for x in range(bombs):
 	a[w][h] = '*'
 
 #couldn't really figure out how to check the surrounding squares
-for i in range(height):
+for i in range(width):
 	if a[i+1][h] == '*':
-		a[i][h] = 'B'
+		a[i][h] += 1
 	if a[i-1][h] == '*':
-		a[i][h] = 'U'
+		a[i][h] += 1
 	if a[w][i+1] == '*':
-		a[w][i] = 'R'
+		a[w][i] += 1
 	if a[w][i-1] == '*':
-		a[w][i] = 'L'
+		a[w][i] += 1
+
 
 #Worked for around 1.5 hours, couldn't figure it out
 
