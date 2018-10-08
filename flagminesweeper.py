@@ -3,7 +3,7 @@
 #10/8/18
 import sys
 import random as r
-#NOTE: This version allows you to remove flags without revealing what is at that point.
+#NOTE: This version allows you to remove flags without revealing what item (number of bomb) is at that point.
 
 width = int(sys.argv[1])
 height = int(sys.argv[2])
