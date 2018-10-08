@@ -3,7 +3,7 @@
 #10/8/18
 import sys
 import random as r
-#NOTE: This version does not allow you to remove flags without revealing what's at that point. If you try to remove a flag, you can only do so by revealing what's at that point (ex; if you put a flag over a 1, that 1 would be revealed).
+#NOTE: This version does not allow you to remove flags without revealing what's at that point. If you try to get rid of a flag you already placed, you can only do so by revealing what's at that point (ex; if you put a flag over a 1, that 1 would be revealed).
 
 width = int(sys.argv[1])
 height = int(sys.argv[2])
