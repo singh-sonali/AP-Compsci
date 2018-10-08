@@ -5,7 +5,7 @@ width = int(sys.argv[1])
 height = int(sys.argv[2])
 bombs = int(sys.argv[3])
 
-print("Welcome to Minesweeper. Here are some directions before you begin.\nEach time, you will have a chance to choose a coordinate on the grid where you either can place a flag or reveal what is at that point.\nBombs are randomly placed at certain points on the grid.\nEvery other point on the grid has a number which shows how many bombs are touching that point.\nThe goal of the game is to place flags over all of the bombs. If you place a flag where there is no bomb, nothing happens.\nYou must reveal what's under this flag in order to win - you cannot win the game if you have flags over all of the bombs, and additional flags in the wrong places.\nIf you try to reveal a bomb, you lose.\nIf you place a flag over a bomb, and try to reveal that point, you will lose.\n You can only take away a flag by revealing what's at that point.\nIt's time to begin. Good luck!")
+print("Welcome to Minesweeper. Here are some directions before you begin.\nEach time, you will have a chance to choose a coordinate on the grid where you either can place a flag or reveal what is at that point.\nBombs are randomly placed at certain points on the grid.\nEvery other point on the grid has a number which shows how many bombs are touching that point.\nThe goal of the game is to place flags over all of the bombs. If you place a flag where there is no bomb, nothing happens.\nYou must reveal what's under this flag in order to win - you cannot win the game if you have flags over all of the bombs, and additional flags in the wrong places.\nIf you try to reveal a bomb, you lose.\nIf you place a flag over a bomb, and try to reveal that point, you will lose.\nYou can only take away a flag by revealing what's at that point.\nIt's time to begin. Good luck!")
 
 #height corresponds to the x coordinate
 #width corresponds to the y coordinate
@@ -26,11 +26,11 @@ for y in range(width+2):
 
 #placebombs
 for x in range(bombs):
-	h = int(r.randrange(2, height))
-	w = int(r.randrange(2, width))
+	h = int(r.randrange(1, height))
+	w = int(r.randrange(1, width))
 	while a[h][w] is '*':
-		h = int(r.randrange(2, height))
-		w = int(r.randrange(2, width))
+		h = int(r.randrange(1, height))
+		w = int(r.randrange(1, width))
 	a[h][w] = '*'
 
 
@@ -58,10 +58,10 @@ for x in range(1,height + 1):
 
 
 #solution board
-# for x in range(1, height + 1):
-# 	for y in range(1, width + 1):
-# 		print(a[x][y],end=" ")
-# 	print("")
+for x in range(1, height + 1):
+	for y in range(1, width + 1):
+		print(a[x][y],end=" ")
+	print("")
 
 #Game board
 z = []
@@ -75,7 +75,7 @@ wrongflag = 0
 def choice():
 	global rightflag
 	global wrongflag
-	coordinate = input("Enter an X,Y coordinate to place a flag in or reveal. \nNote: x is the number of spaces across and Y is the number of spaces down\n>> ")
+	coordinate = input("Enter an X,Y coordinate to place a flag in or reveal. \nNote: x is the number of spaces across and Y is the number of spaces down. Ex; the upper left hand corner is 1,1\n>> ")
 	#splits the x and y coordinates into two values 
 	loc = coordinate.split(",")
 	placechoice = input("Would you like to... \n1. Place a flag in this space\nor\n2. Reveal the contents of this space?\n>> ")
