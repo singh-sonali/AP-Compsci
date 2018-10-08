@@ -94,11 +94,7 @@ def choice():
 #reveal function depends on if you have a 0, a nonzero, or a bomb
 	if placechoice == '2':
 		if z[int(loc[1])][int(loc[0])] == 'F':
-			if a[int(loc[1])][int(loc[0])] == '*':
-				print("Oh no! You revealed a bomb. Game over.")
-				quit()
-			if a[int(loc[1])][int(loc[0])] != '*':
-				wrongflag -= 1
+			wrongflag -= 1 #if the user takes away an incorrectly placed flag the wrong flag count is decreased. Note: A flag placed correctly on a bomb cannot be revealed because the game will end.
 		print("rightflag", rightflag)
 		print("wrongflag", wrongflag)
 		checkflags()
@@ -136,7 +132,8 @@ def checkaround(loc):
 		visited.append(firstval)
 		for x in range(row-1, row+2):
 			for y in range(col-1, col+2):
-				z[x][y] = a[x][y]
+				if z[x][y] != 'F':
+					z[x][y] = a[x][y]
 				if a[x][y] == 0 and [x,y] not in visited:
 					#add the zeroes that haven't been checked to the checking list
 					zeroes.append([x,y])
