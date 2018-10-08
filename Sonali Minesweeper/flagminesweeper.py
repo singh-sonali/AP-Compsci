@@ -3,13 +3,13 @@
 #10/8/18
 import sys
 import random as r
-#NOTE: This version does not allow you to remove flags without revealing what's at that point. If you try to remove a flag, you can only do so by revealing what's at that point (ex; if you put a flag over a 1, that 1 would be revealed).
+#NOTE: This version allows you to remove flags without revealing what is at that point.
 
 width = int(sys.argv[1])
 height = int(sys.argv[2])
 bombs = int(sys.argv[3])
 
-directions = ("Welcome to Minesweeper. Here are some directions before you begin.\nBombs are randomly placed at certain points on the player grid before you. Every other point on the grid has a number which shows how many bombs are touching that point.\nEach time, you will have a chance to choose a coordinate on the grid where you either can place a flag (F) or reveal what is at that point.\nThe goal of the game is to place flags over all of the bombs. If you place a flag where there is no bomb, nothing happens.\nYou must reveal what's under this flag in order to win - you cannot win the game if you have flags over all of the bombs, and additional flags in the wrong places.\nIf you try to reveal a bomb, you lose.\nIf you place a flag over a bomb, and try to reveal that point, you will lose.\nYou can only take away an incorrectly placed flag by revealing what's at that point.\nIt's time to begin. Good luck! \nIf at any time you would like to see these directions again, enter '3'.")
+directions = ("Welcome to Minesweeper. Here are some directions before you begin.\nBombs are randomly placed at certain points on the player grid before you. Every other point on the grid has a number which shows how many bombs are touching that point.\nEach time, you will have a chance to choose a coordinate on the grid where you either can place a flag (F), remove a flag, or reveal what is at that point.\nThe goal of the game is to place flags over all of the bombs. If you place a flag where there is no bomb, nothing happens.\nYou must remove this wrongly placed flag to win - you cannot win the game if you have flags over all of the bombs, and additional flags in the wrong places.\nIf you try to reveal a bomb, you lose.\nIf you place a flag over a bomb, and try to reveal that point, you will lose.\nYou can only take away an incorrectly placed flag by removing it.\nIt's time to begin. Good luck! \nIf at any time you would like to see these directions again, enter '3'.")
 print(directions)
 
 #height corresponds to the x coordinate
@@ -84,7 +84,7 @@ def choice():
 	coordinate = input("Enter an X,Y coordinate to place a flag in or reveal. \nNote: x is the number of spaces across and Y is the number of spaces down. Ex; the upper left hand corner is 1,1\n>> ")
 	#splits the x and y coordinates into two values 
 	loc = coordinate.split(",")
-	placechoice = input("Would you like to... \n1. Place a flag in this space\nor\n2. Reveal the contents of this space\nor\n3. See the directions again\n>> ")
+	placechoice = input("Would you like to... \n1. Place a flag in this space\nor\n2. Reveal the contents of this space\nor\n3. Remove a flag\nor\n4. See the directions again\n>> ")
 	#Place an "F" in the coordinate chosen
 	if placechoice == '1':
 		if z[int(loc[1])][int(loc[0])] == 'F':
@@ -101,7 +101,7 @@ def choice():
 #reveal function depends on if you have a 0, a nonzero, or a bomb
 	if placechoice == '2':
 		if z[int(loc[1])][int(loc[0])] == 'F':
-			wrongflag -= 1 #if the user takes away an incorrectly placed flag the wrong flag count is decreased. Note: A flag placed correctly on a bomb cannot be revealed because the game will end.
+			wrongflag -= 1 #if the user reveals an incorrectly placed flag the wrong flag count is decreased. Note: A flag placed correctly on a bomb cannot be revealed because the game will end.
 		checkflags()
 		if a[int(loc[1])][int(loc[0])] == 0:
 			checkaround(loc) #prints spaces around 0
@@ -111,6 +111,16 @@ def choice():
 		else:
 			z[int(loc[1])][int(loc[0])] = a[int(loc[1])][int(loc[0])] #If you reveal a non-zero number it simply is shown and you choose a new coordinate
 	if placechoice == '3':
+		if z[int(loc[1])][int(loc[0])] == 'F':
+			z[int(loc[1])][int(loc[0])] = 'x'
+			if a[int(loc[1])][int(loc[0])] == '*':
+				rightflag -=1 #if they removed a correctly placed flag, the rightflag count decreases
+			else:
+				wrongflag-=1 #if they removed a flag over anything other than a bomb, the wrongflag count decreases
+		else:
+			print("That's not a flag; you can't remove it.")
+		checkflags()
+	if placechoice == '4':
 		print(directions)
 
 
