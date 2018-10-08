@@ -19,11 +19,12 @@ for x in range(10):
 print(j)
 
 #this line is equivalent to lines 15-18
-j = [[0]*10 for x in range(10)]
+j = [[x]*10 for x in range(10)]
 #j = [[x]*10 for x in range(10)]
-#print(j)
+#pprint(j)
 
 #printing pretty!
 for x in range(len(j)):
 	print(*j[x])
+print (j[2][10])
 # * "unpacks" the list, which takes away the extra syntax
