@@ -54,4 +54,16 @@ ui = input("Enter two numbers a,b for me to find the GCD of: ")
 value = ui.split(",")
 print("GCD:", euclid(int(value[0]),int(value[1])))
 
+def crazy_eights(n):
+	if n is 0:
+		return 0
+	if n%10 == 8:
+		if n%100 == 88:
+			return 2 + crazy_eights(n//10) #makes the rightmost eight go away
+		return 1 + crazy_eights(n//10)
+	return crazy_eights (n//10)
+uc = input("Enter a group of numbers and I'll find the crazy eights!\n>> ")
+print("Crazy eights:", crazy_eights(int(uc)))
+
+
 
