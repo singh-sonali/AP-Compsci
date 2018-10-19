@@ -7,7 +7,7 @@ http://0pointer.de/blog/projects/mandelbrot.html
 https://introcs.cs.princeton.edu/python/32class/mandelbrot.py.html
 """
 from PIL import Image
-import cmath
+import math
 
 #image size dimensions
 imgx = 256
@@ -26,34 +26,28 @@ maxCalc = 1000 #how many times value should be calculated to see if it escapes
 image = Image.new("RGB",(imgx, imgy))
 
 for y in range(imgy):
-	#zy: y component of complex number z
+	#cy: y component of complex number c
 	#have to scale the grid values (-2 to 2) to fit in (0 to 255)
 	cy = y *(y2-y1)/(imgy-1) +y1
-	# print(y)
-	# print(zy)
 	for x in range(imgx):
-		#zx: x component of complex number z
-		#used same scaling method as above for zx
+		#cx: x component of complex number c
+		#used same scaling method as above for cx
 		cx = x * (x2-x1)/(imgx-1) + x1
-		#calculate z using formula given on demo
-		# zx = cmath.sqrt(zx**2 + zy**2)
-		zx = zx**2-zy**2
-		zy = 2*zx*zy
-		zx += cx
-		zy += cy
-		#store first value of z into c value so it can be added after each check to see if that point has "escaped"
-		#c = z
+		# initial value of z is always 0
+		z = 0
+		# put the imaginary component (cy) and real component of (cx) into one complex number c
+		c = complex(cx, cy)
 
 		#loop only checks first -maxCalc- z values to see if point has escaped
 		for count in range(maxCalc):
 			#if the point escapes (higher than 2), the loop is exited
-			if math.sqrt(zx**2+zy**2) >= 2:
+			if abs(z) >= 2:
 				break
 			#if on the first iteration, the point hasn't escaped, the next value of z is calculated and loops through again
-			#z = z*z + c
-		image.putpixel((x,y),(count%10 *100, count%100 *10, count%1 *100))
+			z = z*z + c
+		image.putpixel((x,y),(count%32 *64, count%16 *18, count%64 *16))
 
 
 
 
-image.save("demo_image.png", "PNG")
+image.save("mandel.png", "PNG")
