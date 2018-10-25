@@ -1,5 +1,6 @@
 from PIL import Image
 from PIL import ImageFilter
+import math
 import random 
 
 #This method draws an image created by a zoom on a specific area of the Julia set.
@@ -36,13 +37,23 @@ def Julia():
                     break 
                 z = z * z + c
 
-            #Simple mod for colors. More complex use of variables is then implemented when coloring pixels.
-            r = i * 5 % 256
-            g = i * 15 % 256
-            b = i * 16 % 256
+            #Tried using log for colors. Added simple mod to ensure that rgb values are in correct range. Even more complex use of variables is then implemented when coloring pixels.
+            r = int(math.log(i*50) % 256)
+            g = int(math.log(i*150) % 256)
+            b = int(math.log(i*160) % 256)
 
+            #Simple mod for colors. More complex use of variables is then implemented when coloring pixels.
+            greenr = i * 5 % 256
+            greeng = i * 15 % 256
+            greenbb = i * 16 % 256
+            print(r,g,b)
+
+            greenimage.putpixel((x, y), greenr*1027 + greeng%332 * greenb+ i)
+
+            #Rotated green image 90 degrees for effect. Both green and red images are immediately shown upon running code instead of saved.
+    greenimage.rotate(90).show()
     #Experimenting with more complex ways to input RGB values. Discovered that avoiding a RGB tuple, and instead modifying r,g,b values in one expression produced exciting colors. Presume that PIL accepts a single value as a monochrome color. Both a green image, and red image of the same design and zoom are produced using algorithms.
-            greenimage.putpixel((x, y), r*1027 + g%332 * b+ i)
+            #greenimage.putpixel((x, y), r*1027 + g%332 * b+ i)
             redimage.putpixel((x, y), r*10 + g%10 * b+ i)
 
     #Rotated green image 90 degrees for effect. Both green and red images are immediately shown upon running code instead of saved.

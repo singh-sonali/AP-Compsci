@@ -13,7 +13,7 @@ from PIL import ImageFilter
 #The colorsys module enables conversions between types of color sets.
 import colorsys as col
 import random
-
+import math
 
 #Code for first Image.
 #This method draws a swirly, bright picture.
@@ -107,23 +107,30 @@ def zoom_julia_image():
                     break 
                 z = z * z + c
 
+            #Tried using log for colors. Added simple mod to ensure that rgb values are in correct range. Even more complex use of variables is then implemented when coloring pixels.
+            r = int(math.log(i*50) % 256)
+            g = int(math.log(i*150) % 256)
+            b = int(math.log(i*160) % 256)
+
+    		#Experimenting with more complex ways to input RGB values. Discovered that avoiding a RGB tuple, and instead modifying r,g,b values in one expression produced exciting colors. Presume that PIL accepts a single value as a monochrome color. Red, zoomed-in Julia fractal is produced here using log colors.
+            
+            redimage.putpixel((x, y), r*10 + g%100 * b+ i)
+
+            #Created another green image with not as complex assignment of colors, but the output was cool, so I'm putting the code for that here.
+
             #Simple mod for colors. More complex use of variables is then implemented when coloring pixels.
-            r = i * 5 % 256
-            g = i * 15 % 256
-            b = i * 16 % 256
+            greenr = i * 5 % 256
+            greeng = i * 15 % 256
+            greenb = i * 16 % 256
 
-    #Experimenting with more complex ways to input RGB values. Discovered that avoiding a RGB tuple, and instead modifying r,g,b values in one expression produced exciting colors. Presume that PIL accepts a single value as a monochrome color. Both a green image, and red image of the same design and zoom are produced using algorithms.
-            greenimage.putpixel((x, y), r*1027 + g%332 * b+ i)
-            redimage.putpixel((x, y), r*10 + g%10 * b+ i)
+            #Creation of green image, with cool algorithm.
+            greenimage.putpixel((x, y), greenr*1027 + greeng%332 * greenb+ i)
 
-    #Rotated green image 90 degrees for effect. Both green and red images are immediately shown upon running code instead of saved.
-    greenimage.rotate(90).show()
+
     redimage.show()
-
-
+    greenimage.rotate(90).show()
 
 #This method stacks two different images on top of each other to create another cool image. The base image uses the mandelbrot set, while the top decorative image was constructed using the julia set.
-
 def stacked_images():
 #Code for base image is first.
 
