@@ -1,7 +1,8 @@
 #Sonali Singh
 #10/24/18
-#Sources: Python PIL Documentation Website
+#Sources: Python PIL Documentation, Colorsys explanation
 #https://pillow.readthedocs.io/en/3.1.x/reference/Image.html
+#https://www.oreilly.com/library/view/python-standard-library/0596000960/ch09s11.html
 #Description: This code draws three types of fractal images. The first two methods use code from the Julia set, while the last uses code from the Mandelbrot set.
 
 #CODE STARTS NOW!
