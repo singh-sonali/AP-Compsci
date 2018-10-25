@@ -1,42 +1,52 @@
 from PIL import Image
 from PIL import ImageFilter
 import random 
-import colorsys
-#Image 1 Area Space
-xa = -.5432423423
-xb = 1.5 + xa
-ya = -.74324232342
-yb = 1.5 + ya
-#Max Iterations of Image 1
-maxIt = 256
-#Dimensions of images
-imgx = 512
-imgy = 512
 
+#This method draws an image created by a zoom on a specific area of the Julia set.
 def Julia():
+    #Image Area Space. xa and ya were found as zoom coordinates by experimentation. xb and yb are defined in terms of xa and xb respectively to ensure equal distances between x and y coordinates. 
+    xa = -.54
+    xb = 1.5 + xa
+    ya = -.74
+    yb = 1.5 + ya
+
+    #Max iterations allowed
+    maxIt = 256
+    #Image dimensions
+    imgx = 512
+    imgy = 512
+
+    #C value was found by randomizing Julia set and selecting, then copying, random c value that produced nice picture.
     c = complex(-0.5831868776269598,-0.4827115744172533)
-    colorgreen = Image.new("RGB", (imgx, imgy))
-    colorred = Image.new("RGB", (imgx, imgy))
+
+    #Two images of the same design, but with different main colors are created.
+    greenimage = Image.new("RGB", (imgx, imgy))
+    redimage = Image.new("RGB", (imgx, imgy))
+
+    #Begin modified Julia set code. First lines are simply the scaling of the drawing area to the image size.
     for y in range(imgy):
         zy = y * (yb - ya) / (imgy - 1) + ya
         for x in range(imgx):
             zx = x * (xb - xa) / (imgx - 1) + xa
             z = complex(zx, zy)
+
+            #Point "escapes" if it's values exceeds the specified range within the max number of iterations. 
             for i in range(maxIt):
                 if abs(z) > 2.0: 
                     break 
                 z = z * z + c
+
+            #Simple mod for colors. More complex use of variables is then implemented when coloring pixels.
             r = i * 5 % 256
             g = i * 15 % 256
             b = i * 16 % 256
-#Tried seeing what would happen if I didn't put three arguments in for color, and the result was extremely cool.
-            colorgreen.putpixel((x, y), r*1027 + g%332 * b+ i)
-            colorred.putpixel((x, y), r*10 + g%10 * b+ i)
-    colorgreen.rotate(90).show()
-    colorred.show()
-#pasting images in their locations (based on name)
 
-def Hello():
-    print("hello")
+    #Experimenting with more complex ways to input RGB values. Discovered that avoiding a RGB tuple, and instead modifying r,g,b values in one expression produced exciting colors. Presume that PIL accepts a single value as a monochrome color. Both a green image, and red image of the same design and zoom are produced using algorithms.
+            greenimage.putpixel((x, y), r*1027 + g%332 * b+ i)
+            redimage.putpixel((x, y), r*10 + g%10 * b+ i)
+
+    #Rotated green image 90 degrees for effect. Both green and red images are immediately shown upon running code instead of saved.
+    greenimage.rotate(90).show()
+    redimage.show()
 
 Julia()
