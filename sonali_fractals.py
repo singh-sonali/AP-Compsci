@@ -116,7 +116,7 @@ def zoom_julia_image():
             
             redimage.putpixel((x, y), r*10 + g%100 * b+ i)
 
-            #Created another green image with not as complex assignment of colors, but the output was cool, so I'm putting the code for that here.
+            #Created another green image with the same pattern, but with a simpler assignment of colors. The output was cool, so I'm including the code for that here.
 
             #Simple mod for colors. More complex use of variables is then implemented when coloring pixels.
             greenr = i * 5 % 256
