@@ -2,6 +2,7 @@
 #10/24/18
 #Sources: Python PIL Documentation Website
 #https://pillow.readthedocs.io/en/3.1.x/reference/Image.html
+#Description: This code draws three types of fractal images. The first two methods use code from the Julia set, while the last uses code from the Mandelbrot set.
 
 #CODE STARTS NOW!
 import PIL
@@ -242,6 +243,8 @@ def stacked_images():
 psychedelic_image()
 zoom_julia_image()
 stacked_images()
+
+#OMH: I have neither given nor received any unauthorized aid. 
 
 
 
