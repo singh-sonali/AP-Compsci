@@ -15,8 +15,6 @@ topimage = Image.new("RGB", (imgx, imgy))
 # Julia set to draw
 Tc = complex(-0.780987977374866,-0.18958326731498987)
 
-print(Tc)
-
 for y in range(imgy):
     Tzy = y * (Tyb - Tya) / (imgy - 1)  + Tya
     for x in range(imgx):

@@ -41,20 +41,20 @@ def Julia():
             r = int(math.log(i*50) % 256)
             g = int(math.log(i*150) % 256)
             b = int(math.log(i*160) % 256)
+            redimage.putpixel((x, y), r*10 + g%10 * b+ i)
 
-            #Simple mod for colors. More complex use of variables is then implemented when coloring pixels.
-            greenr = i * 5 % 256
-            greeng = i * 15 % 256
-            greenbb = i * 16 % 256
-            print(r,g,b)
+            # #Simple mod for colors. More complex use of variables is then implemented when coloring pixels.
+            # greenr = i * 5 % 256
+            # greeng = i * 15 % 256
+            # greenbb = i * 16 % 256
+            # print(r,g,b)
 
-            greenimage.putpixel((x, y), greenr*1027 + greeng%332 * greenb+ i)
+            # greenimage.putpixel((x, y), greenr*1027 + greeng%332 * greenb+ i)
 
             #Rotated green image 90 degrees for effect. Both green and red images are immediately shown upon running code instead of saved.
-    greenimage.rotate(90).show()
     #Experimenting with more complex ways to input RGB values. Discovered that avoiding a RGB tuple, and instead modifying r,g,b values in one expression produced exciting colors. Presume that PIL accepts a single value as a monochrome color. Both a green image, and red image of the same design and zoom are produced using algorithms.
             #greenimage.putpixel((x, y), r*1027 + g%332 * b+ i)
-            redimage.putpixel((x, y), r*10 + g%10 * b+ i)
+    
 
     #Rotated green image 90 degrees for effect. Both green and red images are immediately shown upon running code instead of saved.
     greenimage.rotate(90).show()
