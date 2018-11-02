@@ -19,14 +19,14 @@ class Dog:
 			status = "Erm, " + self.name +" shouldn't play right now. Maybe try a nap or some food?"
 		return status
 
-	def eat():
+	def eat(self):
 		if fullness<10:
 			self.happiness +=1
 			self.fullness +=1
 			self.energy +=1
 			status = self.name + " ate some kibble and it was yummy."
 		else:
-			status = "Your dog is a little full right now. " + self.name " shouldn't eat. Maybe"
+			status = "Your dog is a little full right now. " + self.name + " shouldn't eat. Maybe"
 	def stats(self):
 		info = "Name: " + self.name
 		info += "\nEnergy: " + str(self.energy)

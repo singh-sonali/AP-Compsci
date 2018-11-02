@@ -32,7 +32,6 @@ class RationalNumber:
 
 	__repr__ = __str__ # __repr__ returns a "formal" value of a string, while __str__ returns the "informal value". Because of this __repr__ of a string value can be called as an argument in eval.
 
-
 def main():
 	a = RationalNumber(1, 2)
 	b = RationalNumber(1, 3)
