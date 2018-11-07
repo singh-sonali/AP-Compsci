@@ -1,5 +1,5 @@
 import csv
-from element import Element
+from elements import Element
 import re
 
 class PeriodicTable:
@@ -18,7 +18,7 @@ class PeriodicTable:
 
     def elchoice(self, elchoice):
         for elementdata in self.elements:
-            if elementdata.element.upper() == elchoice.upper():
+            if elementdata.getElement().upper() == elchoice.upper():
                 return elementdata
         noelement = "There is no element by that name."
         return noelement
@@ -36,8 +36,8 @@ class PeriodicTable:
                         multiplier = int(letter)
                         split_formula[i] = split_formula[i].replace(letter, "")
                         #split_formula[i].remove(letter)
-                if elementdata.symbol == split_formula[i]:
-                    formula_weight += float(elementdata.weight)*multiplier
+                if elementdata.getSymbol() == split_formula[i]:
+                    formula_weight += float(elementdata.getWeight())*multiplier
                     multiplier = 1
         # for x in split_formula:
         #     for letter in x:
@@ -59,6 +59,6 @@ def main():
 			formula = input("Enter a molecular formula to get its weight: ")
 			print(table1.weight(formula))
 		else:
-			print("That's not an option. Please enter a 1 or 2.")
+			quit()
 
 main()
