@@ -31,7 +31,3 @@ class Element:
 		info += "\nSymbol: " + self.symbol
 		info += "\nAtomic weight: " + str(self.weight) + " g"
 		return info
-
-
-# element1 = Element("Hydrogen", 1, "H", 1.01)
-# print(element1)

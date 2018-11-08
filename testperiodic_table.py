@@ -21,9 +21,9 @@ class PeriodicTable:
 
     def elchoice(self, elchoice):
         for elementdata in self.elements:
-            if elementdata.getElement().upper() == elchoice.upper():
+            if elementdata.getElement().upper() == elchoice.upper() or elementdata.getSymbol().upper() == elchoice.upper():
                 return elementdata
-        noelement = "There is no element by that name."
+        noelement = "There is no element by that name/symbol."
         return noelement
 
     def weight(self, formula):
@@ -39,7 +39,6 @@ class PeriodicTable:
                 for letter in split_formula[i]:
                     if letter.isdigit():
                         multiplier = int(split_formula[i][pos:])
-                        print(letter,pos, multiplier)
                         split_formula[i] = split_formula[i].replace(split_formula[i][pos:], "")
                         break
                     pos += 1
@@ -47,32 +46,35 @@ class PeriodicTable:
                 if elementdata.symbol == split_formula[i]:
                     formula_weight += float(elementdata.getWeight())*multiplier
                     multiplier = 1
-                    result = str(formula_weight)
+                    result = "Weight: " + str(round(formula_weight , 2)) + " g"
                     if i == len(split_formula)-1:
                         return result
-        # for x in split_formula:
-        #     for letter in x:
-        #         if letter.isdigit():
-        #             formula_weight*=int(letter)
+                    #formula_weight*=int(letter)
         return result
 
+    def recognize(self, actionchoice):
+        #recognizes whether the user input is an element or a molecular formula
+        global identify
+        for item in self.elements:
+            if item.getElement().upper() == actionchoice.upper() or item.getSymbol().upper() == actionchoice.upper(): 
+                identify = True
+                return identify
+            else:
+                identify = False
 
 def main():
+    table1 = PeriodicTable()
     print("Welcome to the Periodic Table Mastery Chart! This program is designed to help the user with chemistry homework and become well-equipped with the elements.\n")
     while True:
-        table1 = PeriodicTable()
+        actionchoice = input("Enter an element name, symbol, or molecular formula to access information.\n>> ")
 
-        actionchoice = input("Would you like to...\n1. Get an element's data\n2. Get a molecular formula's weight?\n3. Exit this program.\n>> ")
-        if actionchoice == '1':
-            elchoice = input("Enter an element name to get its data: ")
-            print(table1.elchoice(elchoice))
-        elif actionchoice == '2':
-            formula = input("Enter a molecular formula to get its weight: ")
-            print(table1.weight(formula))
-        elif actionchoice == '3':
-            print("Goodbye!")
-            break
-        else:
-            print("That's not an option. Please enter a 1, 2, or 3.")
+        table1.recognize(actionchoice)
+        if identify == True:
+            print(table1.elchoice(actionchoice))
+        if identify == False:
+            print(table1.weight(actionchoice))
+
+
+
 
 main()
