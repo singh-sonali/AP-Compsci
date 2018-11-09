@@ -1,11 +1,17 @@
 # Things to work on:
 # The result of HE2 (need to make else statement?)
 # The molecular weight if there are two or more digits
+# quit the program
+# Move periodic table class to its own file
+# comment nicely
 import csv
 from elements import Element
 import re
 
 class PeriodicTable:
+	# set up elements in PT
+	# read in from file using whatever library
+	# stored as list of element objects
     def __init__(self):
         self.elements = []
         with open('elements.csv') as csv_file:
@@ -26,6 +32,7 @@ class PeriodicTable:
         # noelement = "There is no element by that name/symbol."
         # return noelement
 
+    # comment here
     def weight(self, formula):
         # be able to divide the molecular formula into elements and add their weights by that and multiplying by the number after it
         multiplier = 1
@@ -49,7 +56,6 @@ class PeriodicTable:
                     result = "Weight: " + str(round(formula_weight , 2)) + " g"
                     if i == len(split_formula)-1:
                         return result
-                    #formula_weight*=int(letter)
         return result
 
     def recognize(self, actionchoice):
@@ -61,20 +67,4 @@ class PeriodicTable:
                 return identify
             else:
                 identify = False
-
-def main():
-    table1 = PeriodicTable()
-    print("Welcome to the Periodic Table Mastery Chart! This program is designed to help the user with chemistry homework and become well-equipped with the elements.\n")
-    while True:
-        actionchoice = input("Enter an element name, symbol, or molecular formula to access information.\n>> ")
-
-        table1.recognize(actionchoice)
-        if identify == True:
-            print(table1.elchoice(actionchoice))
-        if identify == False:
-            print(table1.weight(actionchoice))
-
-
-
-
-main()
+                
