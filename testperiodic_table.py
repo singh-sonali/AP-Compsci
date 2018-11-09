@@ -23,8 +23,8 @@ class PeriodicTable:
         for elementdata in self.elements:
             if elementdata.getElement().upper() == elchoice.upper() or elementdata.getSymbol().upper() == elchoice.upper():
                 return elementdata
-        noelement = "There is no element by that name/symbol."
-        return noelement
+        # noelement = "There is no element by that name/symbol."
+        # return noelement
 
     def weight(self, formula):
         # be able to divide the molecular formula into elements and add their weights by that and multiplying by the number after it
@@ -42,7 +42,7 @@ class PeriodicTable:
                         split_formula[i] = split_formula[i].replace(split_formula[i][pos:], "")
                         break
                     pos += 1
-                result = "\nThat is not a valid molecular formula."
+                result = "\nThat is not a valid element or formula."
                 if elementdata.symbol == split_formula[i]:
                     formula_weight += float(elementdata.getWeight())*multiplier
                     multiplier = 1
