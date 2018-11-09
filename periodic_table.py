@@ -60,11 +60,11 @@ class PeriodicTable:
 
     def recognize(self, actionchoice):
         #recognizes whether the user input is an element or a molecular formula
-        global identify
         for item in self.elements:
             if item.getElement().upper() == actionchoice.upper() or item.getSymbol().upper() == actionchoice.upper(): 
                 identify = True
                 return identify
             else:
                 identify = False
-                
+        return identify
+
