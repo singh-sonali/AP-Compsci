@@ -1,8 +1,4 @@
 # Things to work on:
-# The result of HE2 (need to make else statement?)
-# The molecular weight if there are two or more digits
-# quit the program
-# Move periodic table class to its own file
 # comment nicely
 import csv
 from elements import Element
@@ -29,8 +25,6 @@ class PeriodicTable:
         for elementdata in self.elements:
             if elementdata.getElement().upper() == elchoice.upper() or elementdata.getSymbol().upper() == elchoice.upper():
                 return elementdata
-        # noelement = "There is no element by that name/symbol."
-        # return noelement
 
     # comment here
     def weight(self, formula):
@@ -58,8 +52,8 @@ class PeriodicTable:
                         return result
         return result
 
+    #recognizes whether the user input is an element or a molecular formula, and sets the 'identify' variable accordingly
     def recognize(self, actionchoice):
-        #recognizes whether the user input is an element or a molecular formula
         for item in self.elements:
             if item.getElement().upper() == actionchoice.upper() or item.getSymbol().upper() == actionchoice.upper(): 
                 identify = True
