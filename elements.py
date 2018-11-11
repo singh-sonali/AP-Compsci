@@ -1,7 +1,5 @@
 # Sonali Singh and Anjali Mangla
 # November 12, 2018
-# Sources:
-# http://ozzmaker.com/add-colour-to-text-in-python/
 # OMH: I have neither given nor received any unauthorized aid.
 
 # creates element object with all of its data
