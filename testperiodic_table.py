@@ -1,11 +1,14 @@
 # Things to work on:
-# The result of HE2 (need to make else statement?)
-# The molecular weight if there are two or more digits
+# comment nicely
 import csv
 from elements import Element
 import re
+from PIL import Image
 
 class PeriodicTable:
+    # set up elements in PT
+    # read in from file using whatever library
+    # stored as list of element objects
     def __init__(self):
         self.elements = []
         with open('elements.csv') as csv_file:
@@ -23,16 +26,18 @@ class PeriodicTable:
         for elementdata in self.elements:
             if elementdata.getElement().upper() == elchoice.upper() or elementdata.getSymbol().upper() == elchoice.upper():
                 return elementdata
-        # noelement = "There is no element by that name/symbol."
-        # return noelement
-
+    def image(self):
+        path = "periodictable.png"
+        image = Image.open(path)
+        image.show()
+    # comment here
     def weight(self, formula):
         # be able to divide the molecular formula into elements and add their weights by that and multiplying by the number after it
         multiplier = 1
         formula_weight = 0
         result = ""
         split_formula = re.findall('[A-Z][^A-Z]*', formula)
-        result = "\nThat is not a valid molecular formula."
+        result = "\nThat is not a valid element or formula."
         for i in range(len(split_formula)):
             for elementdata in self.elements:
                 pos = 0
@@ -46,35 +51,17 @@ class PeriodicTable:
                 if elementdata.symbol == split_formula[i]:
                     formula_weight += float(elementdata.getWeight())*multiplier
                     multiplier = 1
-                    result = "Weight: " + str(round(formula_weight , 2)) + " g"
+                    result = "Weight: " + str(round(formula_weight , 2)) + " g/mol"
                     if i == len(split_formula)-1:
                         return result
-                    #formula_weight*=int(letter)
         return result
 
+    #recognizes whether the user input is an element or a molecular formula, and sets the 'identify' variable accordingly
     def recognize(self, actionchoice):
-        #recognizes whether the user input is an element or a molecular formula
-        global identify
         for item in self.elements:
             if item.getElement().upper() == actionchoice.upper() or item.getSymbol().upper() == actionchoice.upper(): 
                 identify = True
                 return identify
             else:
                 identify = False
-
-def main():
-    table1 = PeriodicTable()
-    print("Welcome to the Periodic Table Mastery Chart! This program is designed to help the user with chemistry homework and become well-equipped with the elements.\n")
-    while True:
-        actionchoice = input("Enter an element name, symbol, or molecular formula to access information.\n>> ")
-
-        table1.recognize(actionchoice)
-        if identify == True:
-            print(table1.elchoice(actionchoice))
-        if identify == False:
-            print(table1.weight(actionchoice))
-
-
-
-
-main()
+        return identify
