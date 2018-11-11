@@ -50,7 +50,7 @@ class PeriodicTable:
         formula_weight = 0
         result = ""
         split_formula = re.findall('[A-Z][^A-Z]*', formula)
-        result = "\nThat is not a recognizable entry."
+        result = "\nThat is not a valid entry. Check capitalization and spelling"
         for i in range(len(split_formula)):
             for elementdata in self.elements:
                 pos = 0
