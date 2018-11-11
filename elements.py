@@ -38,8 +38,8 @@ class Element:
 
 		# info string contains all of element's data with labels in front
 		# used ansi escape codes to change the colors of the printed information
-		info = "\033[1;31;48mElement name: \033[0;30;48m" + self.element
+		info = "\033[1;31;48m\nElement name: \033[0;30;48m" + self.element
 		info += "\033[1;31;48m \nAtomic number: \033[0;30;48m" + str(self.number)
 		info += "\033[1;31;48m \nSymbol: \033[0;30;48m" + self.symbol
-		info += "\033[1;31;48m \nAtomic weight: \033[0;30;48m" + str(self.weight) + " g/mol"
+		info += "\033[1;31;48m \nAtomic weight: \033[0;30;48m " + str(self.weight) + " g/mol"
 		return info

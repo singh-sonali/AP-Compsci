@@ -64,7 +64,7 @@ class PeriodicTable:
                 if elementdata.symbol == split_formula[i]:
                     formula_weight += float(elementdata.getWeight())*multiplier
                     multiplier = 1
-                    result = "Weight: " + str(round(formula_weight , 2)) + " g"
+                    result = "\033[1;31;48m\nMolecular Weight: \033[0;30;48m" + str(round(formula_weight , 2)) + " g/mol"
                     if i == len(split_formula)-1:
                         return result
         return result

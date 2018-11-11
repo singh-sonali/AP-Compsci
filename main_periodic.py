@@ -15,10 +15,14 @@ def main():
 
 	# creates periodic table object
     table1 = PeriodicTable()
-    print("Welcome to the Periodic Table Mastery Chart! This program is designed to help the user with chemistry homework and become well-equipped with the elements.\n")
+
+    # ansi escape codes change color of text
+    print("\033[3;34;48mWelcome to the Periodic Table Mastery Chart! This program is designed to help the user with chemistry homework and become well-equipped with the elements.\033[0;30;48m\n")
 
     while True:
-        actionchoice = input("\nEnter an element name, symbol, or molecular formula to access information. (enter Q to quit)\n>> ")
+
+    	# ansi escape codes change color of text
+        actionchoice = input("\n\033[1;35;48mEnter an element name, symbol, or molecular formula to access information. \033[0;36;48m\n(enter Q to quit)\033[0;30;48m\n>> ")
 
         # user has option to quit
         if actionchoice.upper() == 'Q':
