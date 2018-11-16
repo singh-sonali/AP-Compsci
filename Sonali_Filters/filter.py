@@ -114,8 +114,8 @@ def starrynight():
 	for s in range(100):
 		star.putpixel((r.randrange(width//1.35, width-200), r.randrange(height//2.7)), (255,0,255))
 
-	# using the built-in blend function to blend both images, with an alpha constant of 0.9 ensuring that the background is clearly shown
-	blend = Image.blend(image, star, 0.9)
+	# using the built-in blend function to blend both images, with an alpha constant of 0.95 ensuring that the background is clearly shown
+	blend = Image.blend(image, star, 0.95)
 	blend.show()
 
 bw_rainbow_filter()
