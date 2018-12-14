@@ -383,12 +383,12 @@ money = 1000
 while True:
   user = input("Would you like to buy a textbook? Enter yes, no, or quit.\n>>")
   if user.lower() == "yes":
-    textbook = True
+    buy = True
   elif user.lower() == "no":
-    textbook = False
+    buy = False
   else:
     quit()
-  if textbook and money>=100:
+  if buy and money>=100:
     print("You bought a textbook!")
     textbooks +=1
     money -=100
