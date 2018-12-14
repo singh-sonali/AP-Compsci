@@ -18,6 +18,7 @@ if grade == "A":
 yards = 5
 if yards < 17:
    yards = yards * 2
+print(yards)
  
  
  
@@ -43,6 +44,7 @@ temp = 5.0
 celsius = True
 if celsius:
    temp = 1.8*temp + 32
+print(temp)
  
  
 ''' 6. 
@@ -55,6 +57,7 @@ if numItems == 0:
   print("No items.")
 if numItems >0:
    averageCost = numItems/totalCost
+   print(averageCost)
 
  
  
@@ -142,6 +145,7 @@ taxRate = 15.8
 
 if tax:
    price -= price*taxRate 
+   print(price)
  
  
 ''' 13.  
@@ -149,9 +153,17 @@ if tax:
    -ly: adverb; -ing; gerund; -s: plural; something else: error   
 '''
 word = "lovely"
-wordtype = "great"
+wordtype = "adjective"
 
- 
+if word[(len(word) - 2):] == "ly":
+  wordtype = "adverb"
+elif word[(len(word) - 3):] == "ing":
+  wordtype = "gerund"
+elif word[(len(word) - 1):] == "s":
+  wordtype = "plural"
+
+print(wordtype)
+
  
 ''' 14. 
    If integer variable currentNumber is odd, change its value so that it is now 3 times currentNumber plus 1, otherwise change its value so that it is now half of currentNumber (rounded down when currentNumber is odd). 
@@ -166,7 +178,18 @@ print(currentNumber)
 ''' 15. 
    Assign true to the boolean variable leapYear if the integer variable year is a leap year. (A leap year is a multiple of 4, and if it is a multiple of 100, it must also be a multiple of 400.) 
 '''
- 
+leapYear = False
+year = 2018
+if year%4 == 0:
+  if year%100 == 0:
+    if year%400 == 0:
+      leapYear = True
+    else:
+      leapYear = False
+  else:
+    leapYear = True
+else:
+  leapYear = False
  
  
 ''' 16. 
@@ -187,7 +210,13 @@ print(result)
 ''' 17. 
    If an int, number, is even, a muliple of 5, and in the range of -100 to 100, then it is a special number. Store whether a number is special or not in the boolean variable special. 
 '''
- 
+number = 10
+special = False
+
+if number%2 == 0 and number%5 == 0 and number >= -100 and number <= -100:
+  special = True
+else:
+  special = False
  
  
 ''' 18. 
@@ -237,7 +266,14 @@ print("The month", month, "has", numDays, "days.")
 ''' 21. 
    Three integers, angle1, angle2, and angle3, supposedly made a triangle. Store whether the three given angles make a valid triangle in boolean variable validTriangle.
 '''
- 
+angle1 = 27
+angle2 = 89
+angle3 = 73
+validTriangle = True
+if angle1 + angle2 + angle3 == 180:
+  validTriangle = True
+else:
+  validTriangle = False
  
  
 ''' 22. 
@@ -264,7 +300,17 @@ print("Your electricity payment is", payment, "dollars!")
 ''' 23.
    String, greeting, stores a greeting. String language stores the language. If the language is English, greeting is Hello. If the language is French, the greeting is Bonjour. If the language is Spanish, the greeting is Hola. If the language is something else, the greeting is something of your choice.
 '''
+greeting = "Shalom"
+language = "English"
  
+if language == "English":
+  greeting = "Hello"
+elif language == "French":
+  greeting = "Bonjour"
+elif language == "Spanish":
+  greeting = "Hola"
+else:
+  greeting = "Namaste"
  
  
 ''' 24. 
@@ -287,7 +333,12 @@ print(phrase)
 ''' 25. 
    If a string, userInput, is bacon, print out, "Why did you type bacon?". If it is not bacon, print out, "I like bacon." 
 '''
- 
+userInput = "bacon"
+
+if userInput == "bacon":
+  print("Why did you type bacon?")
+else:
+  print("I like bacon.")
  
 ''' 26.
    Come up with your own creative tasks someone could complete to practice if-statements. Also provide solutions.
@@ -323,19 +374,42 @@ print(season)
 
  
 ''' Task 2:
+  Keep track of textbooks you have bought in the school store. Integer textbooks keeps track of the number of textbooks bought. Float money shows the number of dollars in your Choate account. Boolean buy keeps track of if you are buying textbooks. Every time you buy a textbook, the number of textbooks go up by 1 and the amount of money in your account goes down by $100. 
+'''
+
+# solution
+textbooks = 5
+money = 1000
+while True:
+  user = input("Would you like to buy a textbook? Enter yes, no, or quit.\n>>")
+  if user.lower() == "yes":
+    textbook = True
+  elif user.lower() == "no":
+    textbook = False
+  else:
+    quit()
+  if textbook and money>=100:
+    print("You bought a textbook!")
+    textbooks +=1
+    money -=100
+    print("You now have", textbooks, "textbook(s). The amount of money left in your bank account is:", money, "dollars.")
+  else:
+    print("You didn't buy a textbook. You have", money,"dollars in your bank account.")
+
+ 
+ 
+ 
+''' Task 3: Make sure you are driving safe. Integer speedLimit stores the speed limit. integer carSpeed stores your car's speed. If your car is driving unsafely print "You are driving unsafely. Please slow down". If your car is driving safely print "You are driving safely."
  
 '''
  
 # solution
- 
- 
- 
-''' Task 3:
- 
-'''
- 
-# solution
- 
+speedLimit = 50
+carSpeed = 51
+if carSpeed > speedLimit:
+  print("You are driving unsafely. Please slow down.")
+else:
+  print("You are driving safely.")
  
  
 ''' Sources
