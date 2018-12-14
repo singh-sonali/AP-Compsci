@@ -1,5 +1,5 @@
-# Partner 1: Anjali
-# Partner 2: Sonali
+# Partner 1: Sonali
+# Partner 2: Anjali
 ''' Instructions:
    Work with a partner to complete these tasks. Assume that all variables are declared; you need only write the if-statement using the variables indicated in the description. Write your solution below the commented description.
 '''
