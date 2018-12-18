@@ -1,11 +1,11 @@
+#Partner 1: Sonali (odds)
+#Partner 2: Ryan (evens)
 '''
     On this assignment, you should work with a partner. You must submit what you have completed at the end of the class period, but you do not need to complete any leftover problems for homework. 
  
     For some of these problems you will need to create a class; for others, you will need to use a library. 
     You do NOT need to put all your solutions in this file, however you should keep all your solutions together, clearly labeled with descriptive file names, in one folder. 
 '''
- 
- 
  
  
  
@@ -60,6 +60,31 @@ print(point1.rotate90())
     apply_brake: given a value, decrease the speed of the bike by that value
     speed_up: given a value, increase the speed of the bike by that value
 '''
+class Bicycle:
+    def __init__(self, cadence, gear, speed):
+        self.cadence = cadence
+        self.gear = gear
+        self.speed = speed
+
+    def set_gear(self, gear):
+        self.gear = gear
+        info = "Gear is", self.gear
+        return info
+
+    def set_cadence(self, cadence):
+        self.cadence = cadence
+        info = "Cadence is ", self.cadence
+        return info
+
+    def apply_brake(self, brake):
+        self.speed -= brake
+        info = "Speed after brake is", self.speed
+        return info
+
+    def speed_up(self, acceleration):
+        self.speed += acceleration
+        info = "Speed after acceleration is", self.speed
+        return info
  
  
  
@@ -135,6 +160,15 @@ student1 = Student(100,50,0,24)
     Then, multiply all the values in the array by 4. 
     Then. find the sum of all the values.
 '''
+import numpy as np
+list = np.arrange(20,100.1,0.25)
+list = list*4
+total = np.sum(list)
+
+#Sources
+# https://docs.scipy.org/doc/numpy-1.15.1/reference/generated/numpy.sum.html
+# https://docs.scipy.org/doc/numpy-1.15.1/reference/generated/numpy.sum.html
+# https://docs.scipy.org/doc/numpy-1.15.0/user/quickstart.html
  
  
  
@@ -157,20 +191,25 @@ while t<9:
      
  
  
- 
 ''' 6.
     Use SymPy to determine the area of a triangle given points a, b and c.
 '''
- 
- 
+from sympy.geometry import triangle
+x = (0,0)
+y = (0,6)
+z = (3,6)
+tri = Triangle(z, y, z)
+area = tri.area()
  
  
  
 ''' 7. 
     Use VPython to build a 3D snowman.
 '''
-import VPython
-ball = sphere(pos=(1,2,1),radius = 0.5)
+from vpython import *
+sphere(pos=vector(0,-1,0), radius = 1, color = color.white)
+sphere(pos=vector(0,0.25,0), radius = 0.5, color = color.white)
+sphere(pos=vector(0,1,0), radius = 0.25, color = color.white)
  
  
  
