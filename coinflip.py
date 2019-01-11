@@ -1,4 +1,6 @@
 import random as r
+import matplotlib.pyplot as plt
+
 results = [0,0,0,0,0,0,0,0,0,0,0]
 def coinflip():
 	heads = 0
@@ -11,6 +13,9 @@ def coinflip():
 			results[x] = results[x] + 1
 
 
-for a in range(120):
+for a in range(10000):
 	coinflip()
-print(results)
+#plt.plot([0,1,2,3,4,5,6,7,8,9,10],results, 'rs')
+plt.bar([0,1,2,3,4,5,6,7,8,9,10],results, color=(.5,0,.5,1.0))
+plt.show()
+#print(results)
