@@ -1,5 +1,9 @@
+# Sonali Singh and Anjali Mangla
+# Jan. 30, 2019
 # Some Examples Using NumPy!
 import numpy
+
+# showing basic array formations
 def basic_operations():
 	# Creating regular numpy arrays
 	d_array = numpy.array([1, 2, 3, 4, 5, 6]) 
@@ -23,8 +27,9 @@ def basic_operations():
 	randint_array = numpy.random.randint(0, 10, 6) # random ints
 	print("Random int array:", randint_array)
 
-#basic_operations()
+basic_operations()
 
+# showing the vectorization of lists in numpy
 def vectorization():
 	# Multiplying in numpy vs regular
 	reg_array = [1,2,3,4,5]
@@ -43,10 +48,11 @@ def vectorization():
 
 	# Note: any mathematical operation can be done in numpy to every element with just one line. Without numpy, a for loop is needed.
 
-#vectorization()
+vectorization()
 
+# applications for a fake dataset in numpy
 def classroom_application():
-	# applications for a fake dataset in numpy
+	# create random dataset of ages
 	class_ages = numpy.random.randint(13, 19, 10)
 	# sort ages from smallest to largest
 	class_ages = numpy.sort(class_ages)
@@ -72,6 +78,7 @@ def classroom_application():
 
 classroom_application()
 
+# showing interactions between two arrays in numpy
 def interarray_stuff():
 	# Make two different arrays 
 	array1 = numpy.arange(1,11,1)
@@ -98,11 +105,13 @@ def interarray_stuff():
 
 interarray_stuff()
 
+# applying numpy to real-life math problem
 def volume_problem():
 	# Problem: You are given 5 cylindrical containers with different radius and heights ranging between 5 and 25 cm. Find out a) the volume of water that each container can contain and b) The maximum volume of water of the cylinders.
 
 	# First step: generate values for radius and height of five cylinders. This is ten random values between 5 and 25.
 	values = numpy.random.randint(5, 26, 10)
+	print("The values of all of the radii and heights:",values)
 
 	# Arrange 1d list of values into 2d array with 5 rows, one for each cylinder. Left column will be radius, right will be height.
 	dim_cylinders = values.reshape(5,2)
@@ -112,15 +121,22 @@ def volume_problem():
 	radius = dim_cylinders[:,0]
 	height = dim_cylinders[:,1]
 
+	# Calculate volume using radius and height for each cylinder, and store in new array
 	volume = numpy.pi*radius*height
 	print("Volumes of five cylinders:",volume)
 
+	# Find position of cylinder with maximum volume (add 1 bc index begins at 0)
+	max_cylinder = numpy.argmax(volume)
+	print("Cylinder",max_cylinder+1,"has the largest volume.")
+	# Find maximum in volume array
 	max_vol = numpy.max(volume)
 	print("Maximum cylinder volume:", max_vol)
 
+
 volume_problem()
 
-
+# OMH: Sonali Singh
+# OMH: Anjali Mangla
 	
 
 	
