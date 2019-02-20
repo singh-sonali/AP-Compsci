@@ -1,3 +1,18 @@
+# def __init__(self, posx, posy, dimw, dimh, surface, kind):
+	# 	self.posx = posx
+	# 	self.posy = posy
+	# 	self.dimw = dimw
+	# 	self.dimh = dimh
+	# 	self.surface = surface
+	# 	self.kind = kind
+
+# if self.kind == 1:
+		# 	pygame.draw.rect(self.surface, (255, 100, 255), (self.posx, self.posy, self.dimw, self.dimh))
+
+# elif self.kind == 2:
+		# 	pygame.draw.rect(self.surface, (0, 0, 0), (self.posx, self.posy, self.dimw, self.dimh))
+#pygame.draw.rect(self.surface, (0, 255, 100), (self.posx, self.posy, self.dimw, self.dimh))
+
 def makeWalls():
 	#left border
 	wall1 = Wall(0, 29, 3, 446, surface,1)
