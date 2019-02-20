@@ -41,6 +41,7 @@ all_sprites_list.add(player)
 
 while not done:
 	location = pygame.mouse.get_pos()
+	print(location)
 	for ball in balls:
 		#pygame.display.update() # erases ball
 		surface.blit(background,ball.image, ball.image) # at ball.image redraw ball.image

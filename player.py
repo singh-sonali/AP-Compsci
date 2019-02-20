@@ -17,17 +17,14 @@ class Player(pygame.sprite.Sprite):
 
 	def moveRight(self, posx):
 		self.rect.x += posx
-		pygame.display.update()
-		self.surface.blit(self.image, self.rect)
 
 
 	def moveLeft(self, posx):
 		self.rect.x -= posx
-		self.surface.blit(self.image, self.rect)
 
 	def moveUp(self, posy):
 		self.rect.y -= posy
-		self.surface.blit(self.image, self.rect)
+
 	def moveDown(self, posy):
 		self.rect.y += posy
-		self.surface.blit(self.image, self.rect)
+	

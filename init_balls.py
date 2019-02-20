@@ -21,9 +21,9 @@ class CreateBall:
 			
 
 	def oscillate_vertical(self):
-		if int(self.posy) >= int(self.lowerlim)-5:
+		if int(self.posy) >= int(self.lowerlim):
 			self.speed = -1 * int(self.speed)
-		if int(self.posy) <= int(self.upperlim)+5:
+		if int(self.posy) <= int(self.upperlim):
 			self.speed = -1 * int(self.speed)
 		newposy = (int(self.posy) + int(self.speed))
 
