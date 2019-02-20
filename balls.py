@@ -6,40 +6,27 @@ class Ball:
 	def __init__(self, surface):
 		self.surface = surface
 		self.balls = []
-		self.posy
-		with open('balls.csv') as csv_file:
+		with open('testball.csv') as csv_file:
 			csv_reader = csv.reader(csv_file, delimiter=',')
 			for row in csv_reader:
 				self.balls.append(Create(row[0], row[1], row[2], row[3], row[4], row[5]))
 
-	def display(self, posy):
+	def display(self, newposy):
 		for piece in self.balls:
 			if piece.kind == "1":
-				pygame.draw.circle(self.surface, (0,0,255), [int(piece.posx), int(piece.posy)], 5)
+				pygame.draw.circle(self.surface, (0,0,255), [int(piece.posx), int(newposy)], 5)
 			pygame.display.update()
 
 	def oscillate_vertical(self):
 		for piece in self.balls:
 			if piece.kind == "1":
-				print("working")
 				if int(piece.posy) >= int(piece.lowerlim)-5:
 					piece.speed = -1 * int(piece.speed)
 
 				if int(piece.posy) <= int(piece.upperlim)+5:
 					piece.speed = -1 * int(piece.speed)
-				
-				piece.posy = (int(piece.posy) + int(piece.speed))
-				print(piece.posy)
-			self.display()
+				newposy = (int(piece.posy) + int(piece.speed))
+				print(newposy)
+				self.display(newposy)
 
-			# if piece.getPosy() >= piece.getUpperlim():
-			# 	print("working?")
-			# 	piece.setSpeed(-1 * int(piece.getSpeed()))
-			# 	print(piece.setSpeed())
-			# if piece.getPosy() <= piece.getLowerlim():
-			# 	piece.setSpeed(-1 * int(piece.getSpeed())) # making sure it is positive
-			# #newposy = piece.getPosy() + piece.getSpeed()
-			# if piece.getKind() == 1:
-			# 	print("hi i'm working")
-			# 	piece.setPosy(int(piece.getPosy()) + int(piece.getSpeed())) 
-			
+		
