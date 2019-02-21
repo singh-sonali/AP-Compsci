@@ -18,7 +18,7 @@ class Barriers:
 			
 	
 
-	def display(self):
+	def display(self,):
 		for location in self.barriers:
 			if location.getKind() == "1": #purple walls
 				pygame.draw.rect(self.surface, (255, 100, 255), (int(location.getPosx()), int(location.getPosy()), int(location.getDimw()), int(location.getDimh())))
@@ -29,7 +29,7 @@ class Barriers:
 			elif location.getKind() == "3": 
 				#green safe space
 				pygame.draw.rect(self.surface, (0, 255, 100), (int(location.getPosx()), int(location.getPosy()), int(location.getDimw()), int(location.getDimh())))
-			self.display.update()
+			#self.display.update()
 		
-	def collide(self):
+	def collision(self):
 		pass

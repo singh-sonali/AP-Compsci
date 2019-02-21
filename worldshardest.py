@@ -33,7 +33,7 @@ balls = load_balls()
 
 #all_sprites_list = pygame.sprite.Group()
 #player = Player(surface, background, (255, 0, 0), 15, 15)
-player = Player(surface, background, 0, 0, (255,0,0),15,15)
+player = Player(surface, background, 75, 373, (255,0,0),15,15)
 # player.rect.x = 0
 # player.rect.y = 0
 #all_sprites_list.add(player)
