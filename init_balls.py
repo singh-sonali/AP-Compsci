@@ -18,16 +18,29 @@ class CreateBall:
 	# 	for piece in self.balls:
 	# 		if piece.kind == "1":
 	# 			pygame.draw.circle(self.surface, (int(rcolor), int(gcolor), int(bcolor)), [int(piece.posx), int(newposy)], 5)
-			
+	def oscillate_direction(self):
+		if self.kind == 1:
+			self.oscillate_vertical()
+		elif self.kind == 2 or self.kind == 3:
+			self.oscillate_horizontal()	
 
 	def oscillate_vertical(self):
-		if int(self.posy) >= int(self.lowerlim):
-			self.speed = -1 * int(self.speed)
-		if int(self.posy) <= int(self.upperlim):
-			self.speed = -1 * int(self.speed)
-		newposy = (int(self.posy) + int(self.speed))
+			if self.posy >= self.lowerlim:
+				self.speed = -1 * self.speed
+			if self.posy <= self.upperlim:
+				self.speed = -1 * self.speed
+			newposy = self.posy + self.speed
 
-		self.__init__(self.surface, self.posx, newposy, self.upperlim, self.lowerlim, self.speed, self.kind, self.rcolor, self.gcolor, self.bcolor)
+			self.__init__(self.surface, self.posx, newposy, self.upperlim, self.lowerlim, self.speed, self.kind, self.rcolor, self.gcolor, self.bcolor)
+
+	def oscillate_horizontal(self):
+			if self.posx <= self.lowerlim:
+				self.speed = -1 * self.speed
+			if self.posx >= self.upperlim:
+				self.speed = -1 * self.speed
+			newposx = self.posx + self.speed
+
+			self.__init__(self.surface, newposx, self.posy, self.upperlim, self.lowerlim, self.speed, self.kind, self.rcolor, self.gcolor, self.bcolor)
 
 		
 

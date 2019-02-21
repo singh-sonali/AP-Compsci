@@ -42,16 +42,16 @@ def loadBackground():
 	surface.blit(background, rect)
 	for ball in balls:
 		surface.blit(background, ball.image, ball.image)
-		ball.oscillate_vertical()
+		ball.oscillate_direction()
 	wall.display()
 
 while not done:
 	location = pygame.mouse.get_pos()
 	print(location)
-	wall.display()
+	#wall.display()
 	for ball in balls:
 		surface.blit(background, ball.image, ball.image)
-		ball.oscillate_vertical()
+		ball.oscillate_direction()
 		
 	
 	for event in pygame.event.get():
