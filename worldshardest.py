@@ -13,7 +13,7 @@ Clock = pygame.time.Clock()
 surface = pygame.display.set_mode((677,446))
 def loadBackground():
 	surface.blit(background, rect)
-	wall.display()
+	wall.display(True)
 	player = Player(surface, background, 75, 373, (255,0,0),15,15)
 	print(player.color)
 	# surface.blit(background, player.image, player.image)
@@ -69,7 +69,7 @@ rect = rect.move((0,0))
 surface.blit(background,rect)
 
 wall = Barriers(surface)
-wall.display()
+wall.display(True)
 
 def load_balls():
 	balls = []
@@ -120,15 +120,15 @@ def collision_detection():
 				coins += 1
 				#balls.remove(ball)
 	for barrier in wall.barriers:
-		if barrier.getKind() == 2:
-			if (barrier.getPosx())<= player.posx +7.5 <=(barrier.getPosx() + barrier.getDimw()) and (barrier.getPosy()) <= player.posy +7.5 <= (barrier.getPosy() + barrier.getDimh()):
+		if (barrier.getPosx())<= player.posx +7.5 <=(barrier.getPosx() + barrier.getDimw()) and (barrier.getPosy()) <= player.posy +7.5 <= (barrier.getPosy() + barrier.getDimh()):
+			if barrier.getKind() == 2:
 				death += 1
 				coins = 0
 				player.posx = 75
 				player.posy = 373
 				loadBackground()
-		if barrier.getKind() == 1:
-			if (barrier.getPosx())<= player.posx +7.5 <=(barrier.getPosx() + barrier.getDimw()) and (barrier.getPosy()) <= player.posy +7.5 <= (barrier.getPosy() + barrier.getDimh()):
+
+			if barrier.getKind() == 1:
 				if player.posx <= barrier.getPosx():
 					noMoveRight = True
 				if player.posx >= barrier.getPosx():
@@ -137,7 +137,7 @@ def collision_detection():
 					noMoveDown = True
 				if player.posy >= barrier.getPosy():
 					noMoveUp = True
-			
+		
 	
 while not done:
 	collision_detection()
@@ -158,7 +158,7 @@ while not done:
 			done = True
 	keys = pygame.key.get_pressed()
 	if keys[pygame.K_LEFT]:
-		if player.posx>0:
+		if player.posx > 5:
 			if noMoveLeft == False:
 				surface.blit(background, player.image, player.image)
 				player.moveLeft(5)
@@ -167,7 +167,7 @@ while not done:
 
 	if keys[pygame.K_RIGHT]:
 		#if player.rect.x < 677 - player.rect.width:
-		if player.posx < 677 - player.width:
+		if player.posx < 671 - player.width:
 			if noMoveRight == False:
 				surface.blit(background, player.image, player.image)
 				player.moveRight(5)
@@ -176,7 +176,7 @@ while not done:
 
 	if keys[pygame.K_UP]:
 		#if player.rect.y > 0:
-		if player.posy > 0:
+		if player.posy > 34:
 			if noMoveUp == False:
 				surface.blit(background, player.image, player.image)
 				player.moveUp(5)
@@ -185,12 +185,12 @@ while not done:
 
 	if keys[pygame.K_DOWN]:
 		#if player.rect.y < 446 - player.rect.height:
-		if player.posy < 446 - player.height:
+		if player.posy < 442 - player.height:
 			if noMoveDown == False:
 				surface.blit(background, player.image, player.image)
 				player.moveDown(5)
 			else:
 				pass
-
+	wall.display(False)
 	msElapsed = Clock.tick(20)
 	pygame.display.flip()

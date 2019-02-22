@@ -1,7 +1,7 @@
 import pygame
 import csv
 from init_barrier import Create
-class Barriers(pygame.sprite.Sprite):
+class Barriers():
 
 # def makeGreenSpace():
 # 	gs = Wall(3, 316, 152, 127, surface, 3)
@@ -18,18 +18,21 @@ class Barriers(pygame.sprite.Sprite):
 			
 	
 
-	def display(self,):
-		for location in self.barriers:
-			if location.getKind() == 1: #purple walls
-				pygame.draw.rect(self.surface, (255, 100, 255), (location.getPosx(), location.getPosy(), location.getDimw(), location.getDimh()))
+	def display(self, choice):
+		if choice == False:
+			for location in self.barriers:
+				if location.getKind() == 1: #purple walls
+					pygame.draw.rect(self.surface, (255, 100, 255), (location.getPosx(), location.getPosy(), location.getDimw(), location.getDimh()))
 
-			elif location.getKind() == 2: #black space
-				pygame.draw.rect(self.surface, (0,0,0), (location.getPosx(), location.getPosy(), location.getDimw(), location.getDimh()))
+		else:
+			for location in self.barriers:
+				if location.getKind() == 2: #black space
+					pygame.draw.rect(self.surface, (0,0,0), (location.getPosx(), location.getPosy(), location.getDimw(), location.getDimh()))
 
-			elif location.getKind() == 3: 
-				#green safe space
-				pygame.draw.rect(self.surface, (0, 255, 100), (location.getPosx(), location.getPosy(), location.getDimw(), location.getDimh()))
-			#self.display.update()
+				elif location.getKind() == 3: 
+					#green safe space
+					pygame.draw.rect(self.surface, (171, 254, 171), (location.getPosx(), location.getPosy(), location.getDimw(), location.getDimh()))
+				#self.display.update()
 		
 	def collision(self):
 		pass
