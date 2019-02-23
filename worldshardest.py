@@ -5,10 +5,13 @@ import csv
 from player2 import Player
 import math
 
+
 pygame.display.init()
 pygame.init()
 Clock = pygame.time.Clock()
 surface = pygame.display.set_mode((677,446))
+wall = Barriers(surface)
+wall.display(True)
 def loadBackground():
 	surface.blit(background, rect)
 	wall.display(True)
@@ -52,6 +55,7 @@ def start_screen():
 # start_screen()
 death = 0
 coins = 0
+safe = False
 total_coins = 0
 coins_gotten = []
 done = False
@@ -65,8 +69,6 @@ rect = background.get_rect()
 rect = rect.move((0,0))
 surface.blit(background,rect)
 
-wall = Barriers(surface)
-wall.display(True)
 
 def load_balls():
 	balls = []
@@ -90,6 +92,8 @@ player = Player(surface, background, 75, 373, (255,0,0),15,15)
 def collision_detection():
 	global death
 	global coins
+	global safe
+	global player
 	global noMoveLeft
 	global noMoveRight
 	global noMoveUp
@@ -120,7 +124,7 @@ def collision_detection():
 
 	for barrier in wall.barriers:
 		if (barrier.getPosx() -7 )<= player.posx +7.5 <=(barrier.getPosx() + barrier.getDimw() +7) and (barrier.getPosy() -7) <= player.posy +7.5 <= (barrier.getPosy() + barrier.getDimh() + 7):
-			if barrier.getKind() == 2:
+			if barrier.getKind() == 2 and safe == False:
 				death += 1
 				coins = 0
 				for ball in coins_gotten:
@@ -139,8 +143,29 @@ def collision_detection():
 				if player.posy >= barrier.getPosy():
 					noMoveUp = True
 		
-	
+	for ball in balls:
+		if (ball.posx -16)<= player.posx +7.5 <=(ball.posx + 75 +16) and (ball.posy -16) <= player.posy +7.5 <= (ball.posy + 75 +16):
+			if ball.kind == 4:
+				safe = True
+				if ball.speed > 0:
+					surface.blit(background, player.image, player.image)
+					player.moveDown(3)
+				if ball.speed < 0:
+					surface.blit(background, player.image, player.image)
+					player.moveUp(3)
+			# if ball.kind == 5:
+			# 	safe = True
+			# 	if ball.speed < 0:
+			# 		player.moveLeft(3)
+			# 	if ball.speed > 0:
+			# 		player.moveRight(3)
+
+			else:
+				safe = False
+				#player = Player(surface, background, ball.posx, ball.posy, (255,0,0),15,15)
 while not done:
+	position = pygame.mouse.get_pos()
+	print(position)
 	collision_detection()
 	# wall_collision()
 	text_display("Deaths: " + str(death), 30, 10, (0, 0, 0))
@@ -181,6 +206,7 @@ while not done:
 			if noMoveUp == False:
 				surface.blit(background, player.image, player.image)
 				player.moveUp(5)
+
 			else:
 				pass
 

@@ -11,7 +11,10 @@ class CreateBall:
 		self.rcolor = int(rcolor)
 		self.gcolor = int(gcolor)
 		self.bcolor = int(bcolor)
-		self.image = pygame.draw.circle(self.surface, (self.rcolor, self.gcolor, self.bcolor), [self.posx, self.posy], 5)
+		if self.kind == 4 or self.kind == 5:
+			self.image = pygame.draw.rect(self.surface, (self.rcolor, self.gcolor, self.bcolor), [self.posx, self.posy, 75, 75])
+		else:
+			self.image = pygame.draw.circle(self.surface, (self.rcolor, self.gcolor, self.bcolor), [self.posx, self.posy], 5)
 
 
 	# def display(self, posx, posy, rcolor, gcolor, bcolor):
@@ -19,9 +22,9 @@ class CreateBall:
 	# 		if piece.kind == "1":
 	# 			pygame.draw.circle(self.surface, (int(rcolor), int(gcolor), int(bcolor)), [int(piece.posx), int(newposy)], 5)
 	def oscillate_direction(self):
-		if self.kind == 1:
+		if self.kind == 1 or self.kind == 4:
 			self.oscillate_vertical()
-		elif self.kind == 2 or self.kind == 3:
+		elif self.kind == 2 or self.kind == 3 or self.kind == 5:
 			self.oscillate_horizontal()	
 
 	def oscillate_vertical(self):
