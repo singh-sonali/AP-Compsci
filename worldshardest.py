@@ -8,16 +8,11 @@ import math
 pygame.display.init()
 pygame.init()
 Clock = pygame.time.Clock()
-#print(pygame.font.get_fonts())
-# instruct_screen()
 surface = pygame.display.set_mode((677,446))
 def loadBackground():
 	surface.blit(background, rect)
 	wall.display(True)
 	player = Player(surface, background, 75, 373, (255,0,0),15,15)
-	print(player.color)
-	# surface.blit(background, player.image, player.image)
-	# load_balls()
 	for ball in balls:
 		surface.blit(background, ball.image, ball.image)
 		ball.oscillate_direction()
@@ -57,6 +52,8 @@ def start_screen():
 # start_screen()
 death = 0
 coins = 0
+total_coins = 0
+coins_gotten = []
 done = False
 noMoveLeft = False
 noMoveRight = False
@@ -87,8 +84,6 @@ balls = load_balls()
 
 #player = Player(surface, background, (255, 0, 0), 15, 15)
 player = Player(surface, background, 75, 373, (255,0,0),15,15)
-# player.rect.x = 0
-# player.rect.y = 0
 
 
 
@@ -111,6 +106,8 @@ def collision_detection():
 			if ball.kind == 1 or ball.kind == 2:
 				death += 1
 				coins = 0
+				for ball in coins_gotten:
+					balls.append(ball)
 				player.posx = 75
 				player.posy = 373
 				loadBackground()
@@ -118,12 +115,16 @@ def collision_detection():
 				#player.posy = 373
 			elif ball.kind == 3:
 				coins += 1
-				#balls.remove(ball)
+				balls.remove(ball)
+				coins_gotten.append(ball)
+
 	for barrier in wall.barriers:
-		if (barrier.getPosx())<= player.posx +7.5 <=(barrier.getPosx() + barrier.getDimw()) and (barrier.getPosy()) <= player.posy +7.5 <= (barrier.getPosy() + barrier.getDimh()):
+		if (barrier.getPosx() -7 )<= player.posx +7.5 <=(barrier.getPosx() + barrier.getDimw() +7) and (barrier.getPosy() -7) <= player.posy +7.5 <= (barrier.getPosy() + barrier.getDimh() + 7):
 			if barrier.getKind() == 2:
 				death += 1
 				coins = 0
+				for ball in coins_gotten:
+					balls.append(ball)
 				player.posx = 75
 				player.posy = 373
 				loadBackground()
