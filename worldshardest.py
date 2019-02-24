@@ -212,7 +212,7 @@ def collision_detection():
 	# looks for collisions with moving blocks (kinds 4 and 5)
 	for ball in balls:
 		# a bit more leeway in collisions because the blocks are moving!!
-		if (ball.posx -15)<= player.posx +7.5 <=(ball.posx + 75 +15) and (ball.posy -15) <= player.posy +7.5 <= (ball.posy + 75 +15):
+		if (ball.posx -16)<= player.posx +7.5 <=(ball.posx + 75 +16) and (ball.posy -16) <= player.posy +7.5 <= (ball.posy + 75 +16):
 
 			# for the moving vertically block
 			if ball.kind == 4:
@@ -266,7 +266,7 @@ def game_intro():
 		# these are the instructions and intro to the game, displayed using our nifty text_display function.
 		text_display("World's Hardest Game", 60, (677/2), 100, (0,0,0))
 		text_display("Read to survive: Use your arrows to move. Avoid blue balls and black spaces. If you don't... DEATH.", 20, (677/2), 200, (0,0,0))
-		text_display("Your goal: Collect all the coins and make it back to the green space to win.", 20, (677/2), 250, (0,0,0))
+		text_display("Your goal: Collect coins and make it back to the green space to win.", 20, (677/2), 250, (0,0,0))
 		text_display("But be careful: We're counting your deaths...", 20, (677/2), 300, (0,0,0))
 		text_display("If you're scared... press q to quit or p to try again!", 20, (677/2), 350, (0,0,0))
 		
