@@ -137,7 +137,7 @@ def collision_detection():
 	global noMoveUp
 	global noMoveDown
 
-	# these variables control movement into the purple walls (kind = 1). When the player comes into contact with a wall, depending where the wall is, they will not be able to move in a certain direction, and some of these variables will be made true.
+	# these variables control movement into the purple walls (kind = 1). When the player comes into contact with a wall, depending where the wall is, they will not be able to move in that direction, and some of these variables will be made true.
 	noMoveRight = False
 	noMoveLeft = False
 	noMoveUp = False
@@ -378,6 +378,6 @@ while not done:
 	wall.display(2)
 	msElapsed = Clock.tick(20)
 
-	# and of course continously reupdate our display to show all of this lovely code!
+	# and of course this continously reupdates our display to show all of this lovely code!
 	pygame.display.flip()
 
