@@ -53,8 +53,6 @@ def start_screen():
 	button("START!", 677/2, 446 * 2/3, 200, 50, (0, 255, 0), (0, 180, 0))
 
 
-instruct_screen()
-start_screen()
 death = 0
 coins = 0
 safe = False

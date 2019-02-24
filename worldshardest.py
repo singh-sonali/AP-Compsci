@@ -1,22 +1,51 @@
+# Sonali Singh and Anjali Mangla
+# World's Hardest Game!
+# Sources: 
+# https://www.pygame.org/docs/tut/tom_games4.html
+# https://www.cs.ucsb.edu/~pconrad/cs5nm/topics/pygame/drawing/
+# https://pythonprogramming.net/displaying-images-pygame/
+# https://pythonprogramming.net/pygame-button-function-events/
+# OMH: Sonali Singh
+# OMH: Anjali Mangla
+
+# CODE STARTS HERE!!!
+# importing all relevant libraries and classes
 import pygame, sys
+
+# class that creates walls (see class for info on attributes)
 from barriers import Barriers
+
+# class that creates balls and moving blocks (see class for info on attributes)
 from init_balls import CreateBall
 import csv
+
+# class that creates player (see class for info on moving methods)
 from player2 import Player
 import math
 
-
+# initializing pygame
 pygame.display.init()
 pygame.init()
 Clock = pygame.time.Clock()
+
+# creating game surface
 surface = pygame.display.set_mode((677,446))
+
+# creating walls
 wall = Barriers(surface)
+
+# drawing black and green walls 
 wall.display(1)
 
+# loads moving balls and coins
 def load_balls():
 	balls = []
+
+	# reading in ball data from csv file for flexibility
 	with open('balls.csv') as csv_file:
 		csv_reader = csv.reader(csv_file, delimiter=',')
+
+		# creating ball objects
 		for row in csv_reader:
 			balls.append(CreateBall(surface, row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]))
 
@@ -25,29 +54,56 @@ def load_balls():
 
 balls = load_balls()
 
+# re-draws background function to be used everytime player dies
 def loadBackground():
+	print("hello")
+	surface = pygame.display.set_mode((677,446))
+
+	# draws background onto surface
 	surface.blit(background, rect)
+
+	# displays green and black walls
 	wall.display(1)
+
+	# creates player in starting position
 	player = Player(surface, background, 75, 373, (255,0,0),15,15)
+
+	# makes ball oscillate (direction specified in class) and erases trail by blitting background on previous ball location
 	for ball in balls:
 		surface.blit(background, ball.image, ball.image)
 		ball.oscillate_direction()
 
+# function used for easiness in text display
 def text_display(message, size, posx, posy, color):
 	text_font = pygame.font.SysFont("freesansbold.ttf", size)
+
+	# creates text
 	text = text_font.render(message, True, color)
 	text_rect = text.get_rect()
+
+	# location for text
 	text_rect.center = (posx, posy)
+
+	# puts text on surface at given location
 	surface.blit(text, text_rect)
 
-
+# counts how many times player has died
 death = 0
-coins = 0
-safe = True
-total_coins = 0
-coins_gotten = []
-all_coins = False
 
+# counts how many coins player has collected
+coins = 0
+
+# total_coins is total number of coins in balls list (36)
+total_coins = 0
+for ball in balls:
+	if ball.kind == 3:
+		total_coins += 1
+
+# keeps track of what coins player has collected
+coins_gotten = []
+
+# 
+safe = False
 done = False
 
 noMoveLeft = False
@@ -71,26 +127,28 @@ def collision_detection():
 	global noMoveRight
 	global noMoveUp
 	global noMoveDown
-	global all_coins
 	noMoveRight = False
 	noMoveLeft = False
 	noMoveUp = False
 	noMoveDown = False
 	for ball in balls:
 		if math.sqrt(((player.posx+7.5)- ball.posx)**2 + ((player.posy+7.5) - ball.posy)**2) < 12:
-			if ball.kind == 1 or ball.kind == 2:
-				pass
-				# death += 1
-				# coins = 0
-				# for ball in coins_gotten:
-				# 	balls.append(ball)
-				# player.posx = 75
-				# player.posy = 373
-				# loadBackground()
+			if ball.kind == 1 or ball.kind == 2:				
+				death += 1
+				coins = 0
+				for ball in coins_gotten:
+					balls.append(ball)
+				for ball in coins_gotten:
+					coins_gotten.remove(ball)
+				player.posx = 75
+				player.posy = 373
+				loadBackground()
 			elif ball.kind == 3:
 				coins += 1
 				balls.remove(ball)
 				coins_gotten.append(ball)
+				surface.blit(background, ball.image, ball.image)
+
 
 	for barrier in wall.barriers:
 		if (barrier.getPosx() -7 )<= player.posx +7.5 <=(barrier.getPosx() + barrier.getDimw() +7) and (barrier.getPosy() -7) <= player.posy +7.5 <= (barrier.getPosy() + barrier.getDimh() + 7):
@@ -99,14 +157,14 @@ def collision_detection():
 				coins = 0
 				for ball in coins_gotten:
 					balls.append(ball)
+				for ball in coins_gotten:
+					coins_gotten.remove(ball)
 				player.posx = 75
 				player.posy = 373
 				loadBackground()
 
 			if barrier.getKind() == 3:
 				checkCoins()
-				if all_coins == True:
-					win_screen()
 
 			if barrier.getKind() == 1:
 				if player.posx <= barrier.getPosx():
@@ -139,8 +197,7 @@ def collision_detection():
 				pygame.display.update()
 
 			else:
-				pass
-				# safe = False
+				safe = False
 
 def game_intro():
 	global player
@@ -148,7 +205,6 @@ def game_intro():
 	global coins
 	death = 0
 	coins = 0
-	total_coins = 0
 	intro = True
 
 	while intro:
@@ -162,9 +218,10 @@ def game_intro():
 		text_display("Read to survive: Avoid blue balls and black spaces. If you don't... DEATH.", 20, (677/2), 200, (0,0,0))
 		text_display("Your goal: Collect coins and make it back to the green space to win.", 20, (677/2), 250, (0,0,0))
 		text_display("But be careful: We're counting your deaths...", 20, (677/2), 300, (0,0,0))
+		text_display("If you're scared... press q to quit or p to try again!", 20, (677/2), 350, (0,0,0))
 		
-		pygame.draw.rect(surface, (255,0,0), (288, 350, 100, 50))
-		text_display("START!", 20, 337, 375, (0,0,0))
+		pygame.draw.rect(surface, (255,0,0), (288, 375, 100, 50))
+		text_display("START!", 20, 337, 400, (0,0,0))
 
 		pygame.display.update()
 		Clock.tick(15)
@@ -180,30 +237,29 @@ def game_intro():
 			break
 
 game_intro()
-total_coins = 0
-for ball in balls:
-	if ball.kind == 3:
-		total_coins += 1
-print(total_coins)
+
 
 def checkCoins():
-	global all_coins
 	global win
+	global balls
 	if len(coins_gotten) >= total_coins:
-		all_coins = True
-		win = True
+		for item in coins_gotten:
+			balls.append(item)
+		for item in coins_gotten:
+			coins_gotten.remove(item)
+		win_screen()
+
 
 
 def win_screen():
 	text_display("YOU WON!", 30, 60, 370, (0, 0, 0))
-	text_display("Press P to play again and Q to quit.", 17, 60, 400, (0, 0, 0))
+	text_display("Press P to play again and Q to quit.", 20, 300, 10, (0,0,0))
 
 
 while not done:
 	position = pygame.mouse.get_pos()
 	collision_detection()
-	text_display("Deaths: " + str(death), 20, 50, 10, (0, 0, 0))
-	text_display("Coins: " + str(coins), 20, 150, 10, (0, 0, 0))
+	text_display("Deaths: " + str(death), 30, 50, 15, (0, 0, 0))
 	for ball in balls:
 		surface.blit(background, ball.image, ball.image)
 		ball.oscillate_direction()
@@ -216,6 +272,7 @@ while not done:
 			if event.key == pygame.K_q:
 				done = True
 			elif event.key == pygame.K_p:
+				wall.display(1)
 				game_intro()
 
 	keys = pygame.key.get_pressed()
@@ -246,3 +303,4 @@ while not done:
 	wall.display(2)
 	msElapsed = Clock.tick(20)
 	pygame.display.flip()
+

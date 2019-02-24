@@ -10,12 +10,8 @@ class Player(pygame.sprite.Sprite):
 		self.color = color
 		self. width = width
 		self. height = height
-		# self.image = pygame.Surface([width, height])
-		# self.image.fill((255, 255, 255))
-		# self.image.set_colorkey((255, 255, 255))
 		self.image = pygame.draw.rect(self.surface, color, [posx, posy, width, height])
-		#self.rect = self.image.get_rect()
-		#surface.blit(self.image, self.rect)
+
 
 	def moveRight(self, delta_x):
 		posx = self.posx + delta_x
